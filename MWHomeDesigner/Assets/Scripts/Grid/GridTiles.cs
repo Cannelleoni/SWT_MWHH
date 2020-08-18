@@ -7,6 +7,8 @@ public class GridTiles
     bool isOccupied;
     bool isFloor;
 
+    int rotationY;
+
     //------------------
 
     void setPosX(int x)
@@ -53,6 +55,18 @@ public class GridTiles
     bool getIsFloor()
     {
         return isFloor;
+    }
+
+    //------------------
+
+    void setRotY(int y)
+    {
+        rotationY = y;
+    }
+
+    int getRotY()
+    {
+        return rotationY;
     }
 
 }

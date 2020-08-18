@@ -52,21 +52,22 @@ public class GridController : MonoBehaviour
         gridContainer = new GridTiles[xDim, yDim];
     }
 
-    // join 2D & 3D grid/view generation with extra parameters (prefab, offset, parent)??
+    // join 2D & 3D grid/view generation with extra parameters (prefab, startPos, offsetOuter, offsetInner, parent)??
+    // since it's only squares only use 1 offset?
     // instantiates 2D button prefab tile grid
     void generate2DView(int xDim, int yDim)
     {
 
-        for(int i = 0; i < gridContainerSize.x; i++)
+        for(int i = 0; i < gridContainerSize.x; i++ /*, startPos.x += offsetOuter*/)
         {
-            for(int j = 0; j < gridContainerSize.y; j++)
+            for(int j = 0; j < gridContainerSize.y; j++ /*, startPos.y += offsetInner*/)
             {
                 // instance gets name + dillimeter + i + dillimeter + j
                 // so index can be known via name
                 // example: get indexFromName -> call gridContainerElement & its tile methods
 
-                // instance position is i*offset, j*offset 
-                // remember localPosition
+                // instance position is startPos + turns
+                // remember to use localPosition
 
             }
         }
