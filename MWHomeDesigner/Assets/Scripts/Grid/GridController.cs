@@ -18,6 +18,9 @@ public class GridController : MonoBehaviour
     void Start()
     {
         generate2DView(0, 0);
+        createCustomArray(gridContainerSize.x, gridContainerSize.y);
+        createGrid3D();
+
     }
 
     //// get x dimension from user (input field, slider whatever)
@@ -32,6 +35,10 @@ public class GridController : MonoBehaviour
     //    return -1;
     //}
 
+    GridTiles[,] getGridContainer()
+    {
+        return gridContainer;
+    }
 
     // first preset room & floor layout
     void createPresetArray01(int xDim, int yDim)
@@ -50,6 +57,33 @@ public class GridController : MonoBehaviour
     void createCustomArray(int xDim, int yDim)
     {
         gridContainer = new GridTiles[xDim, yDim];
+
+        for(int g = 0; g < xDim; g++)
+        {
+            for(int h = 0; h < yDim; h++)
+            {
+                getGridContainer()[g, h] = new GridTiles();
+            }
+        }
+
+        print(getGridContainer().GetLength(0));
+        print(getGridContainer().GetLength(1));
+
+        for(int i = 0; i < gridContainer.GetLength(0); i++)
+        {
+            for(int j = 0; j < gridContainer.GetLength(1); j++)
+            {
+                if (/*i % 2 == 0*/true)
+                {
+                    print(getGridContainer()[i, j].getIsFloor());
+                    getGridContainer()[i, j].setIsFloor(true);
+                }
+
+                
+            }
+            
+            
+        }
     }
 
     // join 2D & 3D grid/view generation with extra parameters (prefab, startPos, offsetOuter, offsetInner, parent)??
@@ -63,9 +97,9 @@ public class GridController : MonoBehaviour
         float startPosY = 187.5f;
         int offset = 25;
 
-        for(int i = 0, nr = 0; i < gridContainerSize.x; i++ /*, startPos.x += offsetOuter*/)
+        for(int i = 0, nr = 0; i < gridContainerSize.y; i++)
         {
-            for(int j = 0; j < gridContainerSize.y; j++, nr++ /*, startPos.y += offsetInner*/)
+            for(int j = 0; j < gridContainerSize.x; j++, nr++)
             {
                 // instance gets name + dillimeter + i + dillimeter + j
                 // so index can be known via name
@@ -85,17 +119,29 @@ public class GridController : MonoBehaviour
 
     Vector2Int getGridIndexFromName(GameObject parent)
     {
-        // figure out prefab tree or highest parent I guess
-        // string[] nameParts;
-        // Vector2Int index = new Vector2Int(nameParts[1], nameParts[2]);
+        string s = parent.name; 
+        string[] nameParts = s.Split('_');
+        Vector2Int index = new Vector2Int(System.Int32.Parse(nameParts[1]), System.Int32.Parse(nameParts[2]));
 
-        //return index;
-        return Vector2Int.zero;
+        return index;
     }
 
     // generate 3D grid to the right
     void createGrid3D()
     {
+
+        for(int i = 0; i < gridContainerSize.y; i++)
+        {
+            for(int j = 0; j < gridContainerSize.x; j++)
+            {
+                if(getGridContainer()[i, j].getIsFloor() == true)
+                {
+                    int x = i / 4;      // get them closer together
+                    int y = j / 4;  // why would it reduce their number?? overlapping
+                    GameObject tile = Instantiate(gridTile3D, new Vector3(x, 0, y), Quaternion.identity, gridTile3DParent.transform);
+                }
+            }
+        }
         // instantiate 3d tile grid prefabs 
         // but only isFloor tiles?
     }

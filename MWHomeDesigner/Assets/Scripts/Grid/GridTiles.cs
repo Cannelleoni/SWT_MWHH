@@ -1,70 +1,83 @@
 ﻿
 public class GridTiles
 {
-    int posX;
-    int posY;
+    int posX = 0;
+    int posY = 0;
 
-    bool isOccupied;
-    bool isFloor;
+    bool isOccupied = false;
+    bool isFloor = false;
 
-    int rotationY;
+    int rotationY = 0;
 
     //------------------
 
-    void setPosX(int x)
+    public GridTiles()
+    {
+        int posX = 0;
+        int posY = 0;
+
+        bool isOccupied = false;
+        bool isFloor = false;
+
+        int rotationY = 0;
+    }
+
+    //------------------
+
+    public void setPosX(int x)
     {
         posX = x;
     }
 
-    int getPosX()
+    public int getPosX()
     {
         return posX;
     }
 
     //------------------
 
-    void setPosY(int y)
+    public void setPosY(int y)
     {
         posY = y;
     }
 
-    int getPosY()
+    public int getPosY()
     {
         return posY;
     }
 
     //------------------
 
-    void setOccupied(bool value)
+    public void setOccupied(bool value)
     {
         isOccupied = value;
     }
 
-    bool getOccupied()
+    public bool getOccupied()
     {
         return isOccupied;
     }
 
     //------------------
 
-    void setIsFloor(bool value)
+    public void setIsFloor(bool value)
     {
         isFloor = value;
     }
 
-    bool getIsFloor()
+    public bool getIsFloor()
     {
         return isFloor;
     }
 
     //------------------
 
-    void setRotY(int y)
+    public void setRotY(int y)
     {
         rotationY = y;
     }
 
-    int getRotY()
+    public int getRotY()
     {
         return rotationY;
     }
