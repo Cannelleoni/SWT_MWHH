@@ -17,7 +17,7 @@ public class GridController : MonoBehaviour
 
     void Start()
     {
-    
+        generate2DView(0, 0);
     }
 
     //// get x dimension from user (input field, slider whatever)
@@ -57,10 +57,15 @@ public class GridController : MonoBehaviour
     // instantiates 2D button prefab tile grid
     void generate2DView(int xDim, int yDim)
     {
+        Vector3Int position = new Vector3Int((int) gridTile2DParent.transform.position.x, (int) gridTile2DParent.transform.position.y, 0);
 
-        for(int i = 0; i < gridContainerSize.x; i++ /*, startPos.x += offsetOuter*/)
+        float startPosX = -187.5f;
+        float startPosY = 187.5f;
+        int offset = 25;
+
+        for(int i = 0, nr = 0; i < gridContainerSize.x; i++ /*, startPos.x += offsetOuter*/)
         {
-            for(int j = 0; j < gridContainerSize.y; j++ /*, startPos.y += offsetInner*/)
+            for(int j = 0; j < gridContainerSize.y; j++, nr++ /*, startPos.y += offsetInner*/)
             {
                 // instance gets name + dillimeter + i + dillimeter + j
                 // so index can be known via name
@@ -68,6 +73,11 @@ public class GridController : MonoBehaviour
 
                 // instance position is startPos + turns
                 // remember to use localPosition
+
+                GameObject tile = Instantiate(gridTile2D, position, Quaternion.identity, gridTile2DParent.transform);
+                tile.transform.localPosition = new Vector3(startPosX + i*offset, startPosY-j*offset, 0);
+
+                tile.name = nr + "_" + i + "_" + j;
 
             }
         }
