@@ -5,7 +5,8 @@ using UnityEngine;
 public class GridManager : MonoBehaviour
 {
     // needs getter & setter
-    bool isDecidingFloorLayout;
+    public static bool isDecidingFloorLayout = true;
+    public static bool firstTilePlaced = false;
 
     // uniform, because the underlying grid is a rectangle
     static GridTiles[,] gridContainer;
@@ -22,7 +23,7 @@ public class GridManager : MonoBehaviour
 
     }
 
-    GridTiles[,] getGridContainer()
+    public static GridTiles[,] getGridContainer()
     {
         return gridContainer;
     }
