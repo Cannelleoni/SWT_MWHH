@@ -22,18 +22,6 @@ public class GridManager : MonoBehaviour
 
     }
 
-    //// get x dimension from user (input field, slider whatever)
-    //int getXDimensions()
-    //{
-    //    return -1;
-    //}
-
-    //// get y dimension from user (input field, slider whatever)
-    //int getYDimensions()
-    //{
-    //    return -1;
-    //}
-
     GridTiles[,] getGridContainer()
     {
         return gridContainer;
@@ -69,10 +57,9 @@ public class GridManager : MonoBehaviour
         {
             for(int j = 0; j < gridContainer.GetLength(1); j++)
             {
-                if (i % 2 == 0)
-                {
-                    getGridContainer()[i, j].setIsFloor(true);
-                }
+               
+                getGridContainer()[i, j].setIsFloor(true);
+                
                 
             }
             
@@ -81,14 +68,7 @@ public class GridManager : MonoBehaviour
 
     
 
-    Vector2Int getGridIndexFromName(GameObject parent)
-    {
-        string s = parent.name; 
-        string[] nameParts = s.Split('_');
-        Vector2Int index = new Vector2Int(System.Int32.Parse(nameParts[1]), System.Int32.Parse(nameParts[2]));
-
-        return index;
-    }
+   
 
     // generate 3D grid to the right
     void createGrid3D()
