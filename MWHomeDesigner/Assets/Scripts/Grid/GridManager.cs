@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GridController : MonoBehaviour
+public class GridManager : MonoBehaviour
 {
     // needs getter & setter
     bool isDecidingFloorLayout;
@@ -13,7 +13,7 @@ public class GridController : MonoBehaviour
     Vector2Int gridContainerSize = new Vector2Int(16, 16);
 
 
-    [SerializeField] GameObject gridTile2D, gridTile2DParent, gridTile3D, gridTile3DParent;
+    [SerializeField] GameObject gridTile3D, gridTile3DParent;
 
     void Start()
     {
@@ -21,18 +21,6 @@ public class GridController : MonoBehaviour
         createGrid3D();
 
     }
-
-    //// get x dimension from user (input field, slider whatever)
-    //int getXDimensions()
-    //{
-    //    return -1;
-    //}
-
-    //// get y dimension from user (input field, slider whatever)
-    //int getYDimensions()
-    //{
-    //    return -1;
-    //}
 
     GridTiles[,] getGridContainer()
     {
@@ -65,36 +53,22 @@ public class GridController : MonoBehaviour
             }
         }
 
-        print(getGridContainer().GetLength(0));
-        print(getGridContainer().GetLength(1));
-
         for(int i = 0; i < gridContainer.GetLength(0); i++)
         {
             for(int j = 0; j < gridContainer.GetLength(1); j++)
             {
-                if (i % 2 == 0)
-                {
-                    print(getGridContainer()[i, j].getIsFloor());
-                    getGridContainer()[i, j].setIsFloor(true);
-                }
-
+               
+                getGridContainer()[i, j].setIsFloor(true);
+                
                 
             }
-            
             
         }
     }
 
     
 
-    Vector2Int getGridIndexFromName(GameObject parent)
-    {
-        string s = parent.name; 
-        string[] nameParts = s.Split('_');
-        Vector2Int index = new Vector2Int(System.Int32.Parse(nameParts[1]), System.Int32.Parse(nameParts[2]));
-
-        return index;
-    }
+   
 
     // generate 3D grid to the right
     void createGrid3D()
