@@ -17,7 +17,6 @@ public class GridController : MonoBehaviour
 
     void Start()
     {
-        generate2DView(0, 0);
         createCustomArray(gridContainerSize.x, gridContainerSize.y);
         createGrid3D();
 
@@ -73,7 +72,7 @@ public class GridController : MonoBehaviour
         {
             for(int j = 0; j < gridContainer.GetLength(1); j++)
             {
-                if (/*i % 2 == 0*/true)
+                if (i % 2 == 0)
                 {
                     print(getGridContainer()[i, j].getIsFloor());
                     getGridContainer()[i, j].setIsFloor(true);
@@ -86,36 +85,7 @@ public class GridController : MonoBehaviour
         }
     }
 
-    // join 2D & 3D grid/view generation with extra parameters (prefab, startPos, offsetOuter, offsetInner, parent)??
-    // since it's only squares only use 1 offset?
-    // instantiates 2D button prefab tile grid
-    void generate2DView(int xDim, int yDim)
-    {
-        Vector3Int position = new Vector3Int((int) gridTile2DParent.transform.position.x, (int) gridTile2DParent.transform.position.y, 0);
-
-        float startPosX = -187.5f;
-        float startPosY = 187.5f;
-        int offset = 25;
-
-        for(int i = 0, nr = 0; i < gridContainerSize.y; i++)
-        {
-            for(int j = 0; j < gridContainerSize.x; j++, nr++)
-            {
-                // instance gets name + dillimeter + i + dillimeter + j
-                // so index can be known via name
-                // example: get indexFromName -> call gridContainerElement & its tile methods
-
-                // instance position is startPos + turns
-                // remember to use localPosition
-
-                GameObject tile = Instantiate(gridTile2D, position, Quaternion.identity, gridTile2DParent.transform);
-                tile.transform.localPosition = new Vector3(startPosX + i*offset, startPosY-j*offset, 0);
-
-                tile.name = nr + "_" + i + "_" + j;
-
-            }
-        }
-    }
+    
 
     Vector2Int getGridIndexFromName(GameObject parent)
     {
@@ -129,16 +99,18 @@ public class GridController : MonoBehaviour
     // generate 3D grid to the right
     void createGrid3D()
     {
-
-        for(int i = 0; i < gridContainerSize.y; i++)
+        for(int i = 0, nr = 0; i < gridContainerSize.y; i++)
         {
-            for(int j = 0; j < gridContainerSize.x; j++)
+            for(int j = 0; j < gridContainerSize.x; j++, nr++)
             {
                 if(getGridContainer()[i, j].getIsFloor() == true)
                 {
-                    int x = i / 4;      // get them closer together
-                    int y = j / 4;  // why would it reduce their number?? overlapping
+                    int x = i / 2;      // get them closer together
+                    int y = j / 2;  // why would it reduce their number?? overlapping
                     GameObject tile = Instantiate(gridTile3D, new Vector3(x, 0, y), Quaternion.identity, gridTile3DParent.transform);
+                    tile.transform.localPosition = new Vector3Int(i, 0, j);
+
+                    tile.name = nr + "_" + i + "_" + j;
                 }
             }
         }
