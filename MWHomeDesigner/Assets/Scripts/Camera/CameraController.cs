@@ -41,6 +41,8 @@ public class CameraController : MonoBehaviour
             camera.fieldOfView += Input.GetAxis("Mouse X") * mouseSensitivity * mouseDirection * Time.deltaTime;
         } else if(Input.GetKey(KeyCode.Mouse0) && buttonPan)
         {
+            rotationController.Translate(Vector3.left * Input.GetAxis("Mouse X") * mouseSensitivity / 10 * mouseDirection * Time.deltaTime);
+            rotationController.Translate(Vector3.up * Input.GetAxis("Mouse Y") * mouseSensitivity / 10 * -mouseDirection * Time.deltaTime);
 
         } else if(Input.GetKey(KeyCode.Mouse0))
         {
@@ -52,6 +54,12 @@ public class CameraController : MonoBehaviour
         camera.fieldOfView += Input.mouseScrollDelta.y * scrollSensitivity * scrollDirection;
 
         //PANING
+
+        if(Input.GetKey(KeyCode.Mouse1))
+        {
+            rotationController.Translate(Vector3.left * Input.GetAxis("Mouse X") * mouseSensitivity/10 * mouseDirection * Time.deltaTime);
+            rotationController.Translate(Vector3.up * Input.GetAxis("Mouse Y") * mouseSensitivity / 10 * -mouseDirection * Time.deltaTime);
+        }
 
     }
 
