@@ -6,7 +6,8 @@ public class GridManager : MonoBehaviour
 {
     // needs getter & setter
     public static bool isDecidingFloorLayout = true;
-    public static bool firstTilePlaced = false;
+   // replace with counter
+    // public static bool firstTilePlaced = false;
 
     // uniform, because the underlying grid is a rectangle
     static GridTiles[,] gridContainer;

@@ -18,6 +18,9 @@ public class GameUIFunctionality : MonoBehaviour
                 if(!GridManager.getGridContainer()[j, i].getIsFloor())
                 {
                     Destroy(parent.transform.Find(j + "_" + i).gameObject);
+                } else
+                {
+                    parent.transform.Find(j + "_" + i).gameObject.GetComponent<Renderer>().material.color = Color.white;
                 }
             }
         }

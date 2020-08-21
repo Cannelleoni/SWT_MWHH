@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class TileBaseFunctionality : MonoBehaviour
 {
+    [SerializeField] Renderer allMat;
 
     // check raycast collision
 
     // depending on mode assign isFloor 
 
     // or if isOccupied small popup menu appears
+
+    int tileCounter = 0;
+
+    Vector2Int lastTile;
+    Material currentMat, lastMat;
 
     RaycastHit hit;
 
@@ -35,10 +41,77 @@ public class TileBaseFunctionality : MonoBehaviour
 
                 if (GridManager.isDecidingFloorLayout)
                 {
+                    allMat.material.color = Color.white;
+
+                    Vector2Int name = getGridIndexFromName(hit.transform.gameObject);
+                    currentMat = transform.parent.transform.Find(name.x + "_" + name.y).gameObject.GetComponent<Renderer>().material;
+                    currentMat.color = Color.red;
+
                     if (Input.GetKeyDown(KeyCode.Mouse0))
                     {
-                        Material allMat = GetComponent<Renderer>().material;
-                        allMat.color = Color.white;
+                        //Material allMat = GetComponent<Renderer>().material;
+                        //allMat.color = Color.white;
+
+                        
+
+                        
+                        if (lastTile == null)
+                        {
+                            lastTile = new Vector2Int(0, 0);
+                            
+                        }
+
+                        if(lastMat == null)
+                        {
+                            lastMat = currentMat;
+                        }
+
+                        //if (GridManager.getGridContainer()[lastTile.x, lastTile.y].getIsFloor())
+                        //{
+                        //    lastMat.color = Color.white;
+                        //}
+
+                        
+
+                        // is it the first tile being placed?
+                        if (tileCounter > 0)
+                        {
+                            //check neighbouring tiles
+                            // is at least one floor?
+                            // -> allowed to mark hit as floor
+                            if(GridManager.getGridContainer()[name.x, name.y].getIsFloor())
+                            {
+                                //if(checkAdjacentTiles(name.x, name.y) < 2)
+                                //{
+                                //    print("delete");
+                                //    tileCounter--;
+                                //    GridManager.getGridContainer()[name.x, name.y].setIsFloor(false);
+                                //    //transform.parent.transform.Find(name.x + "_" + name.y).gameObject.GetComponent<Renderer>().material.color = Color.white;
+                                //}
+
+                            } else
+                            {
+                                if (checkAdjacentTiles(name.x, name.y) > 0)
+                                {
+                                    tileCounter++;
+                                    GridManager.getGridContainer()[name.x, name.y].setIsFloor(true);
+                                    currentMat.color = Color.green;
+
+                                }
+                            }
+                        }
+                        else
+                        {
+                            tileCounter = 1;
+                            // any tile is okay
+
+                            //Vector2Int name = getGridIndexFromName(hit.transform.gameObject);
+                            GridManager.getGridContainer()[name.x, name.y].setIsFloor(true);
+                            print(name.x + " - " + name.y);
+                            currentMat.color = Color.green;
+
+                            print("first");
+                        }
 
                         for (int i = 0; i < GridManager.getGridContainer().GetLength(0); i++)
                         {
@@ -46,37 +119,14 @@ public class TileBaseFunctionality : MonoBehaviour
                             {
                                 if (GridManager.getGridContainer()[j, i].getIsFloor())
                                 {
-                                    transform.parent.transform.Find(j + "_" + i).gameObject.GetComponent<Renderer>().material.color = Color.green;
-                                }
+                                    currentMat.color = Color.green;
+                                } // maybe not 16x16 big updates sondern eine mother class die nope
                             }
                         }
 
-                        // is it the first tile being placed?
-                        if (GridManager.firstTilePlaced)
-                        {
-                            //check neighbouring tiles
-                            // is at least one floor?
-                            // -> allowed to mark hit as floor
-                            Vector2Int name = getGridIndexFromName(hit.transform.gameObject);
-
-                            if (checkAdjacentTiles(name.x, name.y))
-                            {
-                                GridManager.getGridContainer()[name.x, name.y].setIsFloor(true);
-                                print("neighbour");
-                            }
-                        }
-                        else
-                        {
-                            GridManager.firstTilePlaced = true;
-                            // any tile is okay
-
-                            Vector2Int name = getGridIndexFromName(hit.transform.gameObject);
-                            GridManager.getGridContainer()[name.x, name.y].setIsFloor(true);
-                            print(name.x + " - " + name.y);
-
-                            print("first");
-                        }
-
+                        lastTile.x = name.x;
+                        lastTile.y = name.y;
+                        lastMat = currentMat;
 
 
                     }
@@ -109,24 +159,26 @@ public class TileBaseFunctionality : MonoBehaviour
         return index;
     }
 
-    bool checkAdjacentTiles(int xDim, int yDim)
+    int checkAdjacentTiles(int xDim, int yDim)
     {
-        for(int i = (xDim - 1) >= 0 ? (xDim - 1) : 0, turnX = 1; i < (xDim + 2) && i < 16; i++, turnX++)
+        int neighbours = 0;
+
+        for(int i = (xDim - 1) >= 0 ? (xDim - 1) : 0, turnX = (xDim - 1) >= 0 ? 2 : 1; i < (xDim + 2) && i < 16; i++, turnX++)
         {
-            for(int j = (yDim -1) >= 0 ? (yDim - 1) : 0, turnY = 1; j < (yDim + 2) && j < 16; j++, turnY++)
+            for(int j = (yDim -1) >= 0 ? (yDim - 1) : 0, turnY = (yDim - 1) >= 0 ? 2 : 1; j < (yDim + 2) && j < 16; j++, turnY++)
             {
                 // ignore self & diagonal tiles
                 if(!((turnX % 2) ==  (turnY % 2)))
                 {
                     if (GridManager.getGridContainer()[i, j].getIsFloor())
                     {
-                        return true;
+                        neighbours++; ;
                     }
                 }
                 
             }
         }
-        return false;
+        return neighbours;
     }
 
 }
