@@ -5,7 +5,8 @@ using UnityEngine;
 public class GridManager : MonoBehaviour
 {
     // needs getter & setter
-    bool isDecidingFloorLayout;
+    public static bool isDecidingFloorLayout = true;
+    public static bool firstTilePlaced = false;
 
     // uniform, because the underlying grid is a rectangle
     static GridTiles[,] gridContainer;
@@ -22,7 +23,7 @@ public class GridManager : MonoBehaviour
 
     }
 
-    GridTiles[,] getGridContainer()
+    public static GridTiles[,] getGridContainer()
     {
         return gridContainer;
     }
@@ -53,17 +54,17 @@ public class GridManager : MonoBehaviour
             }
         }
 
-        for(int i = 0; i < gridContainer.GetLength(0); i++)
-        {
-            for(int j = 0; j < gridContainer.GetLength(1); j++)
-            {
+        //for(int i = 0; i < gridContainer.GetLength(0); i++)
+        //{
+        //    for(int j = 0; j < gridContainer.GetLength(1); j++)
+        //    {
                
-                getGridContainer()[i, j].setIsFloor(true);
+        //        getGridContainer()[i, j].setIsFloor(true);
                 
                 
-            }
+        //    }
             
-        }
+        //}
     }
 
     
@@ -77,14 +78,12 @@ public class GridManager : MonoBehaviour
         {
             for(int j = 0; j < gridContainerSize.x; j++, nr++)
             {
-                if(getGridContainer()[i, j].getIsFloor() == true)
+                //if(getGridContainer()[i, j].getIsFloor() == true)
                 {
-                    int x = i / 2;      // get them closer together
-                    int y = j / 2;  // why would it reduce their number?? overlapping
-                    GameObject tile = Instantiate(gridTile3D, new Vector3(x, 0, y), Quaternion.identity, gridTile3DParent.transform);
+                    GameObject tile = Instantiate(gridTile3D, new Vector3(i, 0, j), Quaternion.identity, gridTile3DParent.transform);
                     tile.transform.localPosition = new Vector3Int(i, 0, j);
 
-                    tile.name = nr + "_" + i + "_" + j;
+                    tile.name = i + "_" + j;
                 }
             }
         }
