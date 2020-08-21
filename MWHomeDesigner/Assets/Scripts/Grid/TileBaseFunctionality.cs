@@ -17,10 +17,9 @@ public class TileBaseFunctionality : MonoBehaviour
     {
         // if(Input.GetKeyDown(KeyCode.Mouse0))
         //{
-        //Material allMat = GetComponent<Renderer>().material;
-        //allMat.color = Color.white;
-
         
+
+
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -28,14 +27,19 @@ public class TileBaseFunctionality : MonoBehaviour
         {
             if (hit.transform != null)
             {
+                
+
                 //Material mat = hit.transform.gameObject.GetComponent<Renderer>().material;
                 //mat.color = Color.red;
                 // 
 
-                if (Input.GetKeyDown(KeyCode.Mouse0))
+                if (GridManager.isDecidingFloorLayout)
                 {
-                    if (GridManager.isDecidingFloorLayout)
+                    if (Input.GetKeyDown(KeyCode.Mouse0))
                     {
+                        Material allMat = GetComponent<Renderer>().material;
+                        allMat.color = Color.white;
+
                         for (int i = 0; i < GridManager.getGridContainer().GetLength(0); i++)
                         {
                             for (int j = 0; j < GridManager.getGridContainer().GetLength(1); j++)
@@ -43,7 +47,6 @@ public class TileBaseFunctionality : MonoBehaviour
                                 if (GridManager.getGridContainer()[j, i].getIsFloor())
                                 {
                                     transform.parent.transform.Find(j + "_" + i).gameObject.GetComponent<Renderer>().material.color = Color.green;
-                                    print("green");
                                 }
                             }
                         }
@@ -74,15 +77,19 @@ public class TileBaseFunctionality : MonoBehaviour
                             print("first");
                         }
 
-                        
+
 
                     }
-                    else
-                    {
-                        // furniture placing is going on
-                        // -> mini pop menu appears
-                    }
+
+
                 }
+                else
+                {
+                    // furniture placing is going on
+                    // -> mini pop menu appears
+                }
+
+                
 
                 
 
@@ -104,14 +111,19 @@ public class TileBaseFunctionality : MonoBehaviour
 
     bool checkAdjacentTiles(int xDim, int yDim)
     {
-        for(int i = (xDim - 1) >= 0 ? (xDim - 1) : 0; i < (xDim + 2) && i < 16; i++)
+        for(int i = (xDim - 1) >= 0 ? (xDim - 1) : 0, turnX = 1; i < (xDim + 2) && i < 16; i++, turnX++)
         {
-            for(int j = (yDim -1) >= 0 ? (yDim - 1) : 0; j < (yDim + 2) && j < 16; j++)
+            for(int j = (yDim -1) >= 0 ? (yDim - 1) : 0, turnY = 1; j < (yDim + 2) && j < 16; j++, turnY++)
             {
-                if(GridManager.getGridContainer()[i, j].getIsFloor())
+                // ignore self & diagonal tiles
+                if(!((turnX % 2) ==  (turnY % 2)))
                 {
-                    return true;
+                    if (GridManager.getGridContainer()[i, j].getIsFloor())
+                    {
+                        return true;
+                    }
                 }
+                
             }
         }
         return false;
