@@ -28,4 +28,9 @@ public class IntroMenuUIFunctionality : MonoBehaviour
             menuUI.SetActive(true);
         }
     }
+
+    public void quitGame()
+    {
+        Application.Quit();
+    }
 }
