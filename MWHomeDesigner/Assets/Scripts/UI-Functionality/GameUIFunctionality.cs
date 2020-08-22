@@ -10,21 +10,13 @@ public class GameUIFunctionality : MonoBehaviour
     {
         GridManager.isDecidingFloorLayout = false;
 
-        // make the button disappear
-        for(int i = 0; i < GridManager.getGridContainer().GetLength(0); i++)
-        {
-            for(int j = 0; j < GridManager.getGridContainer().GetLength(1); j++)
-            {
-                if(!GridManager.getGridContainer()[j, i].getIsFloor())
-                {
-                    Destroy(parent.transform.Find(j + "_" + i).gameObject);
-                } else
-                {
-                    parent.transform.Find(j + "_" + i).gameObject.GetComponent<Renderer>().material.color = Color.white;
-                }
-            }
-        }
+        // make the 2d buttons disappear
+        Destroy(parent);
 
+
+
+        // generate 3d dgrid
+        GridManager.createGrid3D();
 
         // enable furniture picking
 

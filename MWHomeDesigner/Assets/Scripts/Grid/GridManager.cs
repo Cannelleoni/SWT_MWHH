@@ -4,24 +4,43 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
+    static GridManager GM;
+
     // needs getter & setter
     public static bool isDecidingFloorLayout = true;
-   // replace with counter
-    // public static bool firstTilePlaced = false;
+    // replace with counter
+    public static int tileCounter = 0;
 
     // uniform, because the underlying grid is a rectangle
     static GridTiles[,] gridContainer;
     // default max size
-    Vector2Int gridContainerSize = new Vector2Int(16, 16);
+    static Vector2Int gridContainerSize = new Vector2Int(16, 16);
 
 
-    [SerializeField] GameObject gridTile3D, gridTile3DParent;
+    [SerializeField] GameObject gridTile2D, gridTile2DParent, gridTile3D, gridTile3DParent;
+
+    private void Awake()
+    {
+        GM = this;
+    }
 
     void Start()
     {
-        createCustomArray(gridContainerSize.x, gridContainerSize.y);
-        createGrid3D();
 
+        createCustomArray(gridContainerSize.x, gridContainerSize.y);
+        generate2DView(0, 0);
+        //createGrid3D();
+
+    }
+
+    public static void setTileCounter(int i)
+    {
+        tileCounter = i;
+    }
+
+    public static int getTileCounter()
+    {
+        return tileCounter;
     }
 
     public static GridTiles[,] getGridContainer()
@@ -68,21 +87,59 @@ public class GridManager : MonoBehaviour
         //}
     }
 
-    
+    // join 2D & 3D grid/view generation with extra parameters (prefab, startPos, offsetOuter, offsetInner, parent)??
+    // since it's only squares only use 1 offset?
+    // instantiates 2D button prefab tile grid
+    void generate2DView(int xDim, int yDim)
+    {
+        Vector3Int position = new Vector3Int((int)gridTile2DParent.transform.position.x, (int)gridTile2DParent.transform.position.y, 0);
 
-   
+        float startPosX = -270f;
+        float startPosY = 270f;
+        int offset = 36;
+
+        for (int i = 0, nr = 0; i < gridContainerSize.y; i++)
+        {
+            for (int j = 0; j < gridContainerSize.x; j++, nr++)
+            {
+                // instance gets name + dillimeter + i + dillimeter + j
+                // so index can be known via name
+                // example: get indexFromName -> call gridContainerElement & its tile methods
+
+                // instance position is startPos + turns
+                // remember to use localPosition
+
+                GameObject tile = Instantiate(gridTile2D, position, Quaternion.identity, gridTile2DParent.transform);
+                tile.transform.localPosition = new Vector3(startPosX + i * offset, startPosY - j * offset, 0);
+
+                tile.name = nr + "_" + i + "_" + j;
+
+            }
+        }
+    }
+
+    public static Vector2Int getGridIndexFromName(GameObject parent)
+    {
+        string s = parent.name;
+        string[] nameParts = s.Split('_');
+        Vector2Int index = new Vector2Int(System.Int32.Parse(nameParts[1]), System.Int32.Parse(nameParts[2]));
+
+        return index;
+    }
 
     // generate 3D grid to the right
-    void createGrid3D()
+    public static void createGrid3D()
     {
-        for(int i = 0, nr = 0; i < gridContainerSize.y; i++)
+        for(int i = 0; i < gridContainerSize.y; i++)
+        // for (int i = gridContainerSize.y - 1; i >= 0; i--)
         {
-            for(int j = 0; j < gridContainerSize.x; j++, nr++)
+            for (int j = 0; j < gridContainerSize.x; j++)
+            //for (int j = gridContainerSize.x - 1; j >= 0; j--)
             {
-                //if(getGridContainer()[i, j].getIsFloor() == true)
+                if(getGridContainer()[i, j].getIsFloor() == true)
                 {
-                    GameObject tile = Instantiate(gridTile3D, new Vector3(i, 0, j), Quaternion.identity, gridTile3DParent.transform);
-                    tile.transform.localPosition = new Vector3Int(i, 0, j);
+                    GameObject tile = Instantiate(GM.gridTile3D, new Vector3(i, 0, j), Quaternion.identity, GM.gridTile3DParent.transform);
+                    tile.transform.localPosition = new Vector3Int(i, 0, -j);
 
                     tile.name = i + "_" + j;
                 }
@@ -92,11 +149,25 @@ public class GridManager : MonoBehaviour
         // but only isFloor tiles?
     }
 
-    // where should 2d tile prefab functionality go?
-    // extra script probably
-    // -> these only work while the player is deciding the floor layout
-    // -> setting isFloor and such
-    // getGridIndexFromName should probably move as well?
-    // -> have to set up connection to tiles -> make grid static?
-    // intermediate getter & setter
+    public static int checkAdjacentTiles(int xDim, int yDim)
+    {
+        int neighbours = 0;
+
+        for (int i = (xDim - 1) >= 0 ? (xDim - 1) : 0, turnX = (xDim - 1) >= 0 ? 2 : 1; i < (xDim + 2) && i < 16; i++, turnX++)
+        {
+            for (int j = (yDim - 1) >= 0 ? (yDim - 1) : 0, turnY = (yDim - 1) >= 0 ? 2 : 1; j < (yDim + 2) && j < 16; j++, turnY++)
+            {
+                // ignore self & diagonal tiles
+                if (!((turnX % 2) == (turnY % 2)))
+                {
+                    if (GridManager.getGridContainer()[i, j].getIsFloor())
+                    {
+                        neighbours++; ;
+                    }
+                }
+
+            }
+        }
+        return neighbours;
+    }
 }

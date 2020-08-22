@@ -88,7 +88,7 @@ public class TileBaseFunctionality : MonoBehaviour
 
                             } else
                             {
-                                if (checkAdjacentTiles(name.x, name.y) > 0)
+                                //if (checkAdjacentTiles(name.x, name.y) > 0)
                                 {
                                     tileCounter++;
                                     GridManager.getGridContainer()[name.x, name.y].setIsFloor(true);
@@ -149,26 +149,6 @@ public class TileBaseFunctionality : MonoBehaviour
         return index;
     }
 
-    int checkAdjacentTiles(int xDim, int yDim)
-    {
-        int neighbours = 0;
-
-        for(int i = (xDim - 1) >= 0 ? (xDim - 1) : 0, turnX = (xDim - 1) >= 0 ? 2 : 1; i < (xDim + 2) && i < 16; i++, turnX++)
-        {
-            for(int j = (yDim -1) >= 0 ? (yDim - 1) : 0, turnY = (yDim - 1) >= 0 ? 2 : 1; j < (yDim + 2) && j < 16; j++, turnY++)
-            {
-                // ignore self & diagonal tiles
-                if(!((turnX % 2) ==  (turnY % 2)))
-                {
-                    if (GridManager.getGridContainer()[i, j].getIsFloor())
-                    {
-                        neighbours++; ;
-                    }
-                }
-                
-            }
-        }
-        return neighbours;
-    }
+    
 
 }
