@@ -24,8 +24,11 @@ public class GameUIFunctionality : MonoBehaviour
                 }
             }
         }
-        
+
 
         // enable furniture picking
+
+        // destroy itself
+        Destroy(gameObject);
     }
 }

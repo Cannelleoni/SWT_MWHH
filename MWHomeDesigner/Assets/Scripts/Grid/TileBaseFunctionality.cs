@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// draw: white < isFloor < cursor
+
 public class TileBaseFunctionality : MonoBehaviour
 {
     [SerializeField] Renderer allMat;
 
-    // check raycast collision
-
-    // depending on mode assign isFloor 
-
-    // or if isOccupied small popup menu appears
 
     int tileCounter = 0;
 
@@ -21,64 +18,64 @@ public class TileBaseFunctionality : MonoBehaviour
 
     private void Update()
     {
-        // if(Input.GetKeyDown(KeyCode.Mouse0))
-        //{
-        
-
-
-
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out hit, 100.0f))
         {
             if (hit.transform != null)
             {
-                
-
-                //Material mat = hit.transform.gameObject.GetComponent<Renderer>().material;
-                //mat.color = Color.red;
-                // 
-
                 if (GridManager.isDecidingFloorLayout)
                 {
-                    allMat.material.color = Color.white;
+                    //allMat.material.color = Color.white;
 
                     Vector2Int name = getGridIndexFromName(hit.transform.gameObject);
+
                     currentMat = transform.parent.transform.Find(name.x + "_" + name.y).gameObject.GetComponent<Renderer>().material;
+
+                    
+
+                    
+                    
+
+                    if (lastMat == null)
+                    {
+                        lastMat = currentMat;
+                        print("assigned lastMat");
+                    }
+
+                    lastMat.color = Color.white;
+
+                    /* get overdrawn by tile cursor anyway */
+                    for (int i = 0; i < GridManager.getGridContainer().GetLength(0); i++)
+                    {
+                        for (int j = 0; j < GridManager.getGridContainer().GetLength(1); j++)
+                        {
+                            if (GridManager.getGridContainer()[j, i].getIsFloor())
+                            {
+                                // currentMat.color = Color.green;
+                                transform.parent.transform.Find(j + "_" + i).gameObject.GetComponent<Renderer>().material.color = Color.green;
+                            }
+                        }
+                    }
+
                     currentMat.color = Color.red;
 
                     if (Input.GetKeyDown(KeyCode.Mouse0))
                     {
-                        //Material allMat = GetComponent<Renderer>().material;
-                        //allMat.color = Color.white;
 
                         
 
-                        
                         if (lastTile == null)
                         {
                             lastTile = new Vector2Int(0, 0);
                             
                         }
 
-                        if(lastMat == null)
-                        {
-                            lastMat = currentMat;
-                        }
-
-                        //if (GridManager.getGridContainer()[lastTile.x, lastTile.y].getIsFloor())
-                        //{
-                        //    lastMat.color = Color.white;
-                        //}
-
                         
 
                         // is it the first tile being placed?
                         if (tileCounter > 0)
                         {
-                            //check neighbouring tiles
-                            // is at least one floor?
-                            // -> allowed to mark hit as floor
                             if(GridManager.getGridContainer()[name.x, name.y].getIsFloor())
                             {
                                 //if(checkAdjacentTiles(name.x, name.y) < 2)
@@ -103,7 +100,6 @@ public class TileBaseFunctionality : MonoBehaviour
                         else
                         {
                             tileCounter = 1;
-                            // any tile is okay
 
                             //Vector2Int name = getGridIndexFromName(hit.transform.gameObject);
                             GridManager.getGridContainer()[name.x, name.y].setIsFloor(true);
@@ -113,30 +109,24 @@ public class TileBaseFunctionality : MonoBehaviour
                             print("first");
                         }
 
-                        for (int i = 0; i < GridManager.getGridContainer().GetLength(0); i++)
-                        {
-                            for (int j = 0; j < GridManager.getGridContainer().GetLength(1); j++)
-                            {
-                                if (GridManager.getGridContainer()[j, i].getIsFloor())
-                                {
-                                    currentMat.color = Color.green;
-                                } // maybe not 16x16 big updates sondern eine mother class die nope
-                            }
-                        }
+                        
 
-                        lastTile.x = name.x;
-                        lastTile.y = name.y;
-                        lastMat = currentMat;
+                        
 
 
                     }
 
+                    lastTile.x = name.x;
+                    lastTile.y = name.y;
+                    lastMat = currentMat;
 
                 }
                 else
                 {
                     // furniture placing is going on
                     // -> mini pop menu appears
+
+                    // destroy this component or come up with something for reacting to furniture
                 }
 
                 
