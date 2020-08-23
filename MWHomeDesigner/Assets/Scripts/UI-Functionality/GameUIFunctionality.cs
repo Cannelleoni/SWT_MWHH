@@ -1,10 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameUIFunctionality : MonoBehaviour
 {
-    [SerializeField] GameObject parent;
+    [SerializeField] GameObject parent, finishBtn;
+    [SerializeField] Button captureBtn;
+
+
 
     public void finishFloorLayout()
     {
@@ -20,7 +25,15 @@ public class GameUIFunctionality : MonoBehaviour
 
         // enable furniture picking
 
+        // enable captureBtn
+        captureBtn.interactable = true;
+
         // destroy itself
-        Destroy(gameObject);
+        Destroy(finishBtn);
+    }
+
+    public void switchScene(int levelNum)
+    {
+        SceneManager.LoadScene(levelNum);
     }
 }
