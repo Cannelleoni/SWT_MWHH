@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GridManager : MonoBehaviour
@@ -73,18 +74,7 @@ public class GridManager : MonoBehaviour
                 getGridContainer()[g, h] = new GridTiles();
             }
         }
-
-        //for(int i = 0; i < gridContainer.GetLength(0); i++)
-        //{
-        //    for(int j = 0; j < gridContainer.GetLength(1); j++)
-        //    {
-               
-        //        getGridContainer()[i, j].setIsFloor(true);
-                
-                
-        //    }
-            
-        //}
+        
     }
 
     // join 2D & 3D grid/view generation with extra parameters (prefab, startPos, offsetOuter, offsetInner, parent)??
@@ -149,25 +139,122 @@ public class GridManager : MonoBehaviour
         // but only isFloor tiles?
     }
 
+
     public static int checkAdjacentTiles(int xDim, int yDim)
     {
         int neighbours = 0;
 
-        for (int i = (xDim - 1) >= 0 ? (xDim - 1) : 0, turnX = (xDim - 1) >= 0 ? 2 : 1; i < (xDim + 2) && i < 16; i++, turnX++)
+        for (int i = (xDim - 1) >= 0 ? (xDim - 1) : 0, turnX = (xDim - 1) >= 0 ? 1 : 2; i < (xDim + 2) && i < 16; i++, turnX++)
         {
-            for (int j = (yDim - 1) >= 0 ? (yDim - 1) : 0, turnY = (yDim - 1) >= 0 ? 2 : 1; j < (yDim + 2) && j < 16; j++, turnY++)
+            for (int j = (yDim - 1) >= 0 ? (yDim - 1) : 0, turnY = (yDim - 1) >= 0 ? 1 : 2; j < (yDim + 2) && j < 16; j++, turnY++)
             {
                 // ignore self & diagonal tiles
                 if (!((turnX % 2) == (turnY % 2)))
                 {
-                    if (GridManager.getGridContainer()[i, j].getIsFloor())
+                    if (getGridContainer()[i, j].getIsFloor())
                     {
-                        neighbours++; ;
+                        neighbours++; 
                     }
                 }
 
             }
         }
+        print(neighbours);
         return neighbours;
+    }
+
+    public static bool checkIfConnectingPiece(int xDim, int yDim)
+    {
+        bool isConnecting = false;
+        Vector2Int[] pairs = new Vector2Int[8];
+        int index = 0;
+
+        for (int i = (xDim - 1) >= 0 ? (xDim - 1) : 0, turnX = (xDim - 1) >= 0 ? 1 : 2; i < (xDim + 2) && i < 16; i++, turnX++)
+        {
+            for (int j = (yDim - 1) >= 0 ? (yDim - 1) : 0, turnY = (yDim - 1) >= 0 ? 1 : 2; j < (yDim + 2) && j < 16; j++, turnY++)
+            {
+                if(!(turnX == 2 && turnY == 2))
+                {
+                    if (getGridContainer()[i, j].getIsFloor())
+                    {
+                        pairs[index] = new Vector2Int(turnX, turnY);
+                        print("update " + index);
+                        index++;
+                        
+                    }
+                }
+
+                
+
+            }
+        }
+
+        print("neighbours: " + index);
+
+        List<int> countX = new List<int> { 2 };
+        List<int> countY = new List<int> { 2 };
+
+        
+
+        if (index == 2)
+        {
+            for (int k = 0; k < index; k++)
+            {
+                print(pairs[k].x + ":" + pairs[k].y);
+
+                countX.Add(pairs[k].x);
+                countY.Add(pairs[k].y);
+            }
+
+            bool matchX = countX.All(x => x == countX[0]);
+            bool matchY = countY.All(y => y == countY[0]);
+
+            print("match x: " + matchX + ", match y: " + matchY);
+
+            if(matchX || matchY)
+            {
+                return true;
+            }
+
+            /*
+                for each direct neighbour check their constellation and 
+                   then if they have another piece connecting them    
+                   -> if yes allowed to delete
+
+                put in loop to cycle through pairs
+             
+            */
+
+            //if (x1 == y2)
+            //{
+            //    if (y1 == x2)
+            //    {
+            //        if (x1 == 1 || y1 == 1)
+            //        {
+            //            use 1,1
+            //        }
+            //        else
+            //        {
+            //            use 3,3
+            //        }
+            //    }
+            //    else
+            //    {
+            //        use 3,1
+            //    }
+            //}
+            //else
+            //{
+            //    use 1,3
+            //}
+
+
+        } else
+        {
+            return false;
+        }
+        
+
+        return isConnecting;
     }
 }
