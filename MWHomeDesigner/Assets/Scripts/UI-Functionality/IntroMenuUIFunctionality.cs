@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class IntroMenuUIFunctionality : MonoBehaviour
+public class IntroMenuUIFunctionality : BaseFunctionality
 {
     [SerializeField] GameObject menuUI;
     [SerializeField] GameObject settingsUI;
