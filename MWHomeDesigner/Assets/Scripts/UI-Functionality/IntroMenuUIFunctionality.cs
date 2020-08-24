@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
+
 
 public class IntroMenuUIFunctionality : BaseFunctionality
 {
@@ -11,15 +9,13 @@ public class IntroMenuUIFunctionality : BaseFunctionality
     [SerializeField] GameObject menuCloseButton;
     [SerializeField] AudioSource buttonClickSound;
 
-    public void loadScene(int levelToLoad)
+    public void playBtnClickSound()
     {
         buttonClickSound.Play();
-        SceneManager.LoadScene(levelToLoad);
     }
 
     public void toggleMenu()
     {
-        buttonClickSound.Play();
         if (menuUI.activeSelf)
         {
             menuButton.SetActive(true);
@@ -36,22 +32,16 @@ public class IntroMenuUIFunctionality : BaseFunctionality
 
     public void activateSettings()
     {
-        buttonClickSound.Play();
         settingsUI.SetActive(true);
         menuCloseButton.SetActive(false);
     }
 
     public void deactivateSettings()
     {
-        buttonClickSound.Play();
         settingsUI.SetActive(false);
         menuCloseButton.SetActive(true);
         
     }
 
-    public void quitGame()
-    {
-        buttonClickSound.Play();
-        Application.Quit();
-    }
+    
 }
