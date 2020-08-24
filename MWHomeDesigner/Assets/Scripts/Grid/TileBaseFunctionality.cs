@@ -2,87 +2,134 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// draw: white < isFloor < cursor
+
 public class TileBaseFunctionality : MonoBehaviour
 {
+    [SerializeField] Renderer allMat;
 
-    // check raycast collision
 
-    // depending on mode assign isFloor 
+    int tileCounter = 0;
 
-    // or if isOccupied small popup menu appears
+    Vector2Int lastTile;
+    Material currentMat, lastMat;
 
     RaycastHit hit;
 
     private void Update()
     {
-        // if(Input.GetKeyDown(KeyCode.Mouse0))
-        //{
-        //Material allMat = GetComponent<Renderer>().material;
-        //allMat.color = Color.white;
-
-        
-
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out hit, 100.0f))
         {
             if (hit.transform != null)
             {
-                //Material mat = hit.transform.gameObject.GetComponent<Renderer>().material;
-                //mat.color = Color.red;
-                // 
-
-                if (Input.GetKeyDown(KeyCode.Mouse0))
+                if (GridManager.isDecidingFloorLayout)
                 {
-                    if (GridManager.isDecidingFloorLayout)
+                    //allMat.material.color = Color.white;
+
+                    Vector2Int name = getGridIndexFromName(hit.transform.gameObject);
+
+                    currentMat = transform.parent.transform.Find(name.x + "_" + name.y).gameObject.GetComponent<Renderer>().material;
+
+                    
+
+                    
+                    
+
+                    if (lastMat == null)
                     {
-                        for (int i = 0; i < GridManager.getGridContainer().GetLength(0); i++)
+                        lastMat = currentMat;
+                        print("assigned lastMat");
+                    }
+
+                    lastMat.color = Color.white;
+
+                    /* get overdrawn by tile cursor anyway */
+                    for (int i = 0; i < GridManager.getGridContainer().GetLength(0); i++)
+                    {
+                        for (int j = 0; j < GridManager.getGridContainer().GetLength(1); j++)
                         {
-                            for (int j = 0; j < GridManager.getGridContainer().GetLength(1); j++)
+                            if (GridManager.getGridContainer()[j, i].getIsFloor())
                             {
-                                if (GridManager.getGridContainer()[j, i].getIsFloor())
-                                {
-                                    transform.parent.transform.Find(j + "_" + i).gameObject.GetComponent<Renderer>().material.color = Color.green;
-                                    print("green");
-                                }
+                                // currentMat.color = Color.green;
+                                transform.parent.transform.Find(j + "_" + i).gameObject.GetComponent<Renderer>().material.color = Color.green;
                             }
                         }
+                    }
+
+                    currentMat.color = Color.red;
+
+                    if (Input.GetKeyDown(KeyCode.Mouse0))
+                    {
+
+                        
+
+                        if (lastTile == null)
+                        {
+                            lastTile = new Vector2Int(0, 0);
+                            
+                        }
+
+                        
 
                         // is it the first tile being placed?
-                        if (GridManager.firstTilePlaced)
+                        if (tileCounter > 0)
                         {
-                            //check neighbouring tiles
-                            // is at least one floor?
-                            // -> allowed to mark hit as floor
-                            Vector2Int name = getGridIndexFromName(hit.transform.gameObject);
-
-                            if (checkAdjacentTiles(name.x, name.y))
+                            if(GridManager.getGridContainer()[name.x, name.y].getIsFloor())
                             {
-                                GridManager.getGridContainer()[name.x, name.y].setIsFloor(true);
-                                print("neighbour");
+                                //if(checkAdjacentTiles(name.x, name.y) < 2)
+                                //{
+                                //    print("delete");
+                                //    tileCounter--;
+                                //    GridManager.getGridContainer()[name.x, name.y].setIsFloor(false);
+                                //    //transform.parent.transform.Find(name.x + "_" + name.y).gameObject.GetComponent<Renderer>().material.color = Color.white;
+                                //}
+
+                            } else
+                            {
+                                //if (checkAdjacentTiles(name.x, name.y) > 0)
+                                {
+                                    tileCounter++;
+                                    GridManager.getGridContainer()[name.x, name.y].setIsFloor(true);
+                                    currentMat.color = Color.green;
+
+                                }
                             }
                         }
                         else
                         {
-                            GridManager.firstTilePlaced = true;
-                            // any tile is okay
+                            tileCounter = 1;
 
-                            Vector2Int name = getGridIndexFromName(hit.transform.gameObject);
+                            //Vector2Int name = getGridIndexFromName(hit.transform.gameObject);
                             GridManager.getGridContainer()[name.x, name.y].setIsFloor(true);
                             print(name.x + " - " + name.y);
+                            currentMat.color = Color.green;
 
                             print("first");
                         }
 
                         
 
+                        
+
+
                     }
-                    else
-                    {
-                        // furniture placing is going on
-                        // -> mini pop menu appears
-                    }
+
+                    lastTile.x = name.x;
+                    lastTile.y = name.y;
+                    lastMat = currentMat;
+
                 }
+                else
+                {
+                    // furniture placing is going on
+                    // -> mini pop menu appears
+
+                    // destroy this component or come up with something for reacting to furniture
+                }
+
+                
 
                 
 
@@ -102,19 +149,6 @@ public class TileBaseFunctionality : MonoBehaviour
         return index;
     }
 
-    bool checkAdjacentTiles(int xDim, int yDim)
-    {
-        for(int i = (xDim - 1) >= 0 ? (xDim - 1) : 0; i < (xDim + 2) && i < 16; i++)
-        {
-            for(int j = (yDim -1) >= 0 ? (yDim - 1) : 0; j < (yDim + 2) && j < 16; j++)
-            {
-                if(GridManager.getGridContainer()[i, j].getIsFloor())
-                {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
+    
 
 }
