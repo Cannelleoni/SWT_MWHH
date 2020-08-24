@@ -6,15 +6,20 @@ using UnityEngine.SceneManagement;
 public class IntroMenuUIFunctionality : MonoBehaviour
 {
     [SerializeField] GameObject menuUI;
+    [SerializeField] GameObject settingsUI;
     [SerializeField] GameObject menuButton;
     [SerializeField] GameObject menuCloseButton;
+    [SerializeField] AudioSource buttonClickSound;
+
     public void loadScene(int levelToLoad)
     {
+        buttonClickSound.Play();
         SceneManager.LoadScene(levelToLoad);
     }
 
     public void toggleMenu()
     {
+        buttonClickSound.Play();
         if (menuUI.activeSelf)
         {
             menuButton.SetActive(true);
@@ -29,8 +34,24 @@ public class IntroMenuUIFunctionality : MonoBehaviour
         }
     }
 
+    public void activateSettings()
+    {
+        buttonClickSound.Play();
+        settingsUI.SetActive(true);
+        menuCloseButton.SetActive(false);
+    }
+
+    public void deactivateSettings()
+    {
+        buttonClickSound.Play();
+        settingsUI.SetActive(false);
+        menuCloseButton.SetActive(true);
+        
+    }
+
     public void quitGame()
     {
+        buttonClickSound.Play();
         Application.Quit();
     }
 }
