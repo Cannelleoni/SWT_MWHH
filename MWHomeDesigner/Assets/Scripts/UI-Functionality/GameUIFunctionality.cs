@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameUIFunctionality : MonoBehaviour
 {
-    [SerializeField] GameObject parent, finishBtn;
+    [SerializeField] GameObject parent, finishBtn, bluePrintBG;
     [SerializeField] Button captureBtn;
 
 
@@ -18,6 +18,7 @@ public class GameUIFunctionality : MonoBehaviour
         // make the 2d buttons disappear
         Destroy(parent);
 
+        Destroy(bluePrintBG);
 
 
         // generate 3d dgrid

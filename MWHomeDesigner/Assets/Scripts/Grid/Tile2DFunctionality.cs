@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Tile2DFunctionality : MonoBehaviour
 {
+    [SerializeField] Sprite isFloor, noFloor;
+
     public void onClick2DTile()
     {
         // get name
@@ -19,7 +21,9 @@ public class Tile2DFunctionality : MonoBehaviour
             {
                 GridManager.setTileCounter(GridManager.getTileCounter() - 1);
                 GridManager.getGridContainer()[name.x, name.y].setIsFloor(false);
-                gameObject.GetComponent<Image>().color = Color.white;
+
+                gameObject.GetComponent<Button>().image.overrideSprite = noFloor;
+                //gameObject.GetComponent<Image>().color = Color.white;
             } else 
             {
                 // check adjacent tiles
@@ -28,7 +32,9 @@ public class Tile2DFunctionality : MonoBehaviour
                     // should probably use getter & setter
                     GridManager.setTileCounter(GridManager.getTileCounter() + 1);
                     GridManager.getGridContainer()[name.x, name.y].setIsFloor(true);
-                    gameObject.GetComponent<Image>().color = Color.yellow;
+
+                    gameObject.GetComponent<Button>().image.overrideSprite = isFloor;
+                    //gameObject.GetComponent<Image>().color = Color.yellow;
                 }
             }
          
@@ -37,7 +43,9 @@ public class Tile2DFunctionality : MonoBehaviour
             // just place it
             GridManager.setTileCounter(1);
             GridManager.getGridContainer()[name.x, name.y].setIsFloor(true);
-            gameObject.GetComponent<Image>().color = Color.yellow;
+
+            gameObject.GetComponent<Button>().image.overrideSprite = isFloor;
+            //gameObject.GetComponent<Image>().color = Color.yellow;
 
         }
          
