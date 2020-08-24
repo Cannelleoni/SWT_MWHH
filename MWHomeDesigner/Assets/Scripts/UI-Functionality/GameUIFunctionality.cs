@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class GameUIFunctionality : BaseFunctionality
 {
@@ -28,8 +25,8 @@ public class GameUIFunctionality : BaseFunctionality
         Destroy(finishBtn);
     }
 
-    public void switchScene(int levelNum)
-    {
-        SceneManager.LoadScene(levelNum);
-    }
+    //public void switchScene(int levelNum)
+    //{
+    //    SceneManager.LoadScene(levelNum);
+    //}
 }
