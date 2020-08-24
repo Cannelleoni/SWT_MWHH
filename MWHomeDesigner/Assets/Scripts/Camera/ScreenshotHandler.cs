@@ -49,7 +49,7 @@ public class ScreenshotHandler : MonoBehaviour
 
     public void takeScreenshotFromBtn()
     {
-        instance.takeScreenshot(500, 500);
+        instance.takeScreenshot(Screen.width, Screen.height);
     }
 
 }

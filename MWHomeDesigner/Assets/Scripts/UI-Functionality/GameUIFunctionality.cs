@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class GameUIFunctionality : MonoBehaviour
+public class GameUIFunctionality : BaseFunctionality
 {
     [SerializeField] GameObject parent, finishBtn;
     [SerializeField] Button captureBtn;
