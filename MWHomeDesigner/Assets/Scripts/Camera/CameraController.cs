@@ -64,17 +64,23 @@ public class CameraController : MonoBehaviour
     }
 
     //Setter for button controls
-    public void setButtonRotation(bool state)
+    public void setButtonRotation()
     {
-        buttonRotation = state;
+        buttonPan = false;
+        buttonRotation = true;
+        buttonZoom = false;
     }
-    public void setButtonZoom(bool state)
+    public void setButtonZoom()
     {
-        buttonZoom = state;
+        buttonPan = false;
+        buttonRotation = false;
+        buttonZoom = true;
     }
-    public void setButtonPan(bool state)
+    public void setButtonPan()
     {
-        buttonPan = state;
+        buttonPan = true;
+        buttonRotation = false;
+        buttonZoom = false;
     }
 
     //other setters
