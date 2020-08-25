@@ -301,44 +301,7 @@ public class GridManager : MonoBehaviour
         }
         
 
-        //if (index == 2)
-        //{
-        //    for (int k = 0; k < index; k++)
-        //    {
-        //        print(pairs[k].x + ":" + pairs[k].y);
-
-        //        countX.Add(pairs[k].x);
-        //        countY.Add(pairs[k].y);
-        //    }
-
-        //    bool matchX = countX.All(x => x == countX[0]);
-        //    bool matchY = countY.All(y => y == countY[0]);
-
-        //    print("match x: " + matchX + ", match y: " + matchY);
-
-        //    if(matchX || matchY)
-        //    {
-        //        return true;
-        //    }
-
-        //    /*
-        //        for each direct neighbour check their constellation and 
-        //           then if they have another piece connecting them    
-        //           -> if yes allowed to delete
-
-        //        put in loop to cycle through pairs
-             
-        //    */
-
-        //    
-
-
-
-
-        //} else
-        //{
-        //    return false;
-        //}
+        
         
 
         return isConnecting;
