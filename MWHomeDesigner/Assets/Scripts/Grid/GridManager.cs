@@ -165,27 +165,39 @@ public class GridManager : MonoBehaviour
 
     public static bool checkIfConnectingPiece(int xDim, int yDim)
     {
-        bool isConnecting = false;
-        Vector2Int[] pairs = new Vector2Int[8];
+        bool isConnecting = true;
+        Vector2Int[] pairs = new Vector2Int[4];
         int index = 0;
+
+        int directNeighbour = 0;
+        int diagonalNeighbour = 0;
 
         for (int i = (xDim - 1) >= 0 ? (xDim - 1) : 0, turnX = (xDim - 1) >= 0 ? 1 : 2; i < (xDim + 2) && i < 16; i++, turnX++)
         {
             for (int j = (yDim - 1) >= 0 ? (yDim - 1) : 0, turnY = (yDim - 1) >= 0 ? 1 : 2; j < (yDim + 2) && j < 16; j++, turnY++)
             {
-                if(!(turnX == 2 && turnY == 2))
+                if (!((turnX % 2) == (turnY % 2)))  //if (!(turnX == 2 && turnY == 2))
                 {
                     if (getGridContainer()[i, j].getIsFloor())
                     {
                         pairs[index] = new Vector2Int(turnX, turnY);
-                        print("update " + index);
+                        print("update direct " + index);
                         index++;
+                        directNeighbour++;
                         
                     }
+                } else if (!(turnX == 2 && turnY == 2))
+                {
+                    if (getGridContainer()[i, j].getIsFloor())
+                    {
+                        //pairs[index] = new Vector2Int(turnX, turnY);
+                        //print("update diagonal " + index);
+                        //index++;
+                        diagonalNeighbour++;
+                    }
+                        
                 }
-
                 
-
             }
         }
 
@@ -194,10 +206,20 @@ public class GridManager : MonoBehaviour
         List<int> countX = new List<int> { 2 };
         List<int> countY = new List<int> { 2 };
 
-        
-
-        if (index == 2)
+        if(directNeighbour < 2)
         {
+            return false;
+        } else if(directNeighbour == 2)
+        {
+            // is it an H-Construction piece?
+
+            if(diagonalNeighbour == 4)
+            {
+                return false;
+            }
+
+            // is it a bridge piece?
+
             for (int k = 0; k < index; k++)
             {
                 print(pairs[k].x + ":" + pairs[k].y);
@@ -211,48 +233,112 @@ public class GridManager : MonoBehaviour
 
             print("match x: " + matchX + ", match y: " + matchY);
 
-            if(matchX || matchY)
+            if (matchX || matchY)
             {
                 return true;
             }
 
-            /*
-                for each direct neighbour check their constellation and 
-                   then if they have another piece connecting them    
-                   -> if yes allowed to delete
+            // otherwise should be corner piece
+            // check for other piece holding them together
 
-                put in loop to cycle through pairs
-             
-            */
+            for (int k = 1; k < pairs.Length; k++)
+            {
+                if (pairs[k - 1].x == pairs[k].y)
+                {
+                    if (pairs[k - 1].y == pairs[k].x)
+                    {
+                        if (pairs[k - 1].x == 1 || pairs[k - 1].y == 1)
+                        {
+                            // use 1,1
+                            if (xDim > 0 && yDim > 0)
+                            {
+                                print("1 - 1 ");
+                                return !(getGridContainer()[xDim - 1, yDim - 1].getIsFloor());
+                            }
 
-            //if (x1 == y2)
-            //{
-            //    if (y1 == x2)
-            //    {
-            //        if (x1 == 1 || y1 == 1)
-            //        {
-            //            use 1,1
-            //        }
-            //        else
-            //        {
-            //            use 3,3
-            //        }
-            //    }
-            //    else
-            //    {
-            //        use 3,1
-            //    }
-            //}
-            //else
-            //{
-            //    use 1,3
-            //}
-
-
-        } else
+                        }
+                        else
+                        {
+                            // use 3,3
+                            if (xDim < gridContainerSize.x - 1 && yDim < gridContainerSize.y - 1)
+                            {
+                                print("3 - 3");
+                                return !(getGridContainer()[xDim + 1, yDim + 1].getIsFloor());
+                            }
+                        }
+                    }
+                    else
+                    {
+                        // use 3,1
+                        if (xDim < gridContainerSize.x - 1 && yDim > 0)
+                        {
+                            print("3 - 1");
+                            return !(getGridContainer()[xDim + 1, yDim - 1].getIsFloor());
+                        }
+                    }
+                }
+                else
+                {
+                    // use 1,3
+                    if (xDim > 0 && yDim < gridContainerSize.y - 1)
+                    {
+                        print("1 - 3");
+                        return !(getGridContainer()[xDim - 1, yDim + 1].getIsFloor());
+                    }
+                }
+            }
+        } else if(directNeighbour == 3)
         {
-            return false;
+            if(diagonalNeighbour == 4)
+            {
+                print("im okay");
+                return false;
+            }
         }
+        else
+        {
+            return true;
+        }
+        
+
+        //if (index == 2)
+        //{
+        //    for (int k = 0; k < index; k++)
+        //    {
+        //        print(pairs[k].x + ":" + pairs[k].y);
+
+        //        countX.Add(pairs[k].x);
+        //        countY.Add(pairs[k].y);
+        //    }
+
+        //    bool matchX = countX.All(x => x == countX[0]);
+        //    bool matchY = countY.All(y => y == countY[0]);
+
+        //    print("match x: " + matchX + ", match y: " + matchY);
+
+        //    if(matchX || matchY)
+        //    {
+        //        return true;
+        //    }
+
+        //    /*
+        //        for each direct neighbour check their constellation and 
+        //           then if they have another piece connecting them    
+        //           -> if yes allowed to delete
+
+        //        put in loop to cycle through pairs
+             
+        //    */
+
+        //    
+
+
+
+
+        //} else
+        //{
+        //    return false;
+        //}
         
 
         return isConnecting;

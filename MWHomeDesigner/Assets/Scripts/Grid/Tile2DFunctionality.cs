@@ -17,7 +17,7 @@ public class Tile2DFunctionality : MonoBehaviour
 
         if (GridManager.getTileCounter() > 0)
         {
-            if (GridManager.getGridContainer()[name.x, name.y].getIsFloor() && GridManager.checkAdjacentTiles(name.x, name.y) < 3) 
+            if (GridManager.getGridContainer()[name.x, name.y].getIsFloor() && GridManager.checkAdjacentTiles(name.x, name.y) < 4) 
             {
                 // if tile is a corner piece allowed to delete
                 if(!GridManager.checkIfConnectingPiece(name.x, name.y))
