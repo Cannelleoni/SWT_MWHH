@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: Inlanders SDF
+  m_Name: Text
   m_EditorClassIdentifier: 
-  hashCode: -1028996651
+  hashCode: 2979261
   material: {fileID: 8491421555943201702}
   materialHashCode: -854286786
   m_Version: 1.1.0
-  m_SourceFontFileGUID: e362a49004600ff4683579476dce2d34
-  m_SourceFontFile_EditorRef: {fileID: 0}
+  m_SourceFontFileGUID: 459131a1d0f16fc4d96a2597fe41b7b8
+  m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 459131a1d0f16fc4d96a2597fe41b7b8,
+    type: 3}
   m_SourceFontFile: {fileID: 0}
   m_AtlasPopulationMode: 0
   m_FaceInfo:
