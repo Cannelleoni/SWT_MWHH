@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class GameUIFunctionality : BaseFunctionality
 {
+    [SerializeField] GameObject tileTip;
     [SerializeField] GameObject menuUI;
     [SerializeField] GameObject settingsUI;
     [SerializeField] GameObject menuButton;
@@ -43,6 +44,16 @@ public class GameUIFunctionality : BaseFunctionality
             menuCloseButton.SetActive(true);
             menuUI.SetActive(true);
         }
+    }
+
+    public void hideTileTip()
+    {
+        tileTip.SetActive(false);
+    }
+
+    public void showTileTip()
+    {
+        tileTip.SetActive(true);
     }
 
     //public void switchScene(int levelNum)
