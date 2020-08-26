@@ -3,6 +3,10 @@ using UnityEngine.UI;
 
 public class GameUIFunctionality : BaseFunctionality
 {
+    [SerializeField] GameObject menuUI;
+    [SerializeField] GameObject settingsUI;
+    [SerializeField] GameObject menuButton;
+    [SerializeField] GameObject menuCloseButton;
     [SerializeField] GameObject parent, finishBtn;
     [SerializeField] Button captureBtn;
 
@@ -23,6 +27,22 @@ public class GameUIFunctionality : BaseFunctionality
 
         // destroy itself
         Destroy(finishBtn);
+    }
+
+    public void toggleMenu()
+    {
+        if (menuUI.activeSelf)
+        {
+            menuButton.SetActive(true);
+            menuCloseButton.SetActive(false);
+            menuUI.SetActive(false);
+        }
+        else
+        {
+            menuButton.SetActive(false);
+            menuCloseButton.SetActive(true);
+            menuUI.SetActive(true);
+        }
     }
 
     //public void switchScene(int levelNum)
