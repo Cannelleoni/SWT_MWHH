@@ -11,6 +11,13 @@ public class GameUIFunctionality : BaseFunctionality
     [SerializeField] GameObject parent, finishBtn;
     [SerializeField] Button captureBtn;
 
+    public static GameUIFunctionality GUIF;
+
+    private void Awake()
+    {
+        GUIF = this;
+    }
+
     public void finishFloorLayout()
     {
         GridManager.isDecidingFloorLayout = false;
@@ -46,14 +53,14 @@ public class GameUIFunctionality : BaseFunctionality
         }
     }
 
-    public void hideTileTip()
+    public static void hideTileTip()
     {
-        tileTip.SetActive(false);
+        GUIF.tileTip.SetActive(false);
     }
 
-    public void showTileTip()
+    public static void showTileTip()
     {
-        tileTip.SetActive(true);
+        GUIF.tileTip.SetActive(true);
     }
 
     //public void switchScene(int levelNum)
