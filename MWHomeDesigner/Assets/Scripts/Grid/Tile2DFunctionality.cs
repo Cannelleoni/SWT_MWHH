@@ -17,13 +17,17 @@ public class Tile2DFunctionality : MonoBehaviour
 
         if (GridManager.getTileCounter() > 0)
         {
-            if (GridManager.getGridContainer()[name.x, name.y].getIsFloor() && GridManager.checkAdjacentTiles(name.x, name.y) < 2) 
+            if (GridManager.getGridContainer()[name.x, name.y].getIsFloor() && GridManager.checkAdjacentTiles(name.x, name.y) < 4) 
             {
-                GridManager.setTileCounter(GridManager.getTileCounter() - 1);
-                GridManager.getGridContainer()[name.x, name.y].setIsFloor(false);
+                // if tile is a corner piece allowed to delete
+                if(!GridManager.checkIfConnectingPiece(name.x, name.y))
+                {
+                    GridManager.setTileCounter(GridManager.getTileCounter() - 1);
+                    GridManager.getGridContainer()[name.x, name.y].setIsFloor(false);
 
-                gameObject.GetComponent<Button>().image.overrideSprite = noFloor;
-                //gameObject.GetComponent<Image>().color = Color.white;
+                    gameObject.GetComponent<Button>().image.overrideSprite = noFloor;
+                }
+                
             } else 
             {
                 // check adjacent tiles
