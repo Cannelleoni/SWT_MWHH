@@ -2085,9 +2085,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationController: {fileID: 880713935}
   camera: {fileID: 771569803}
-  mouseSensitivity: 200
+  mouseSensitivity: 50
   mouseDirection: 1
-  scrollSensitivity: 2
+  scrollSensitivity: 0.5
   scrollDirection: 1
   buttonRotation: 0
   buttonZoom: 0
