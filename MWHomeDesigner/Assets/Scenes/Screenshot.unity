@@ -1136,12 +1136,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.48702604, g: 0.6923958, b: 0.78300005, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2041da38d4725c74398488a51a9600d2, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2198,7 +2198,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -6245,9 +6245,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationController: {fileID: 2076259458}
   camera: {fileID: 771569803}
-  mouseSensitivity: 200
+  mouseSensitivity: 50
   mouseDirection: 1
-  scrollSensitivity: 2
+  scrollSensitivity: 0.5
   scrollDirection: 1
   buttonRotation: 0
   buttonZoom: 0
