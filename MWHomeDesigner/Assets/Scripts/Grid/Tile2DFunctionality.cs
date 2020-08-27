@@ -26,6 +26,9 @@ public class Tile2DFunctionality : MonoBehaviour
                     GridManager.getGridContainer()[name.x, name.y].setIsFloor(false);
 
                     gameObject.GetComponent<Button>().image.overrideSprite = noFloor;
+                } else
+                {
+                    GameUIFunctionality.showTileTip();
                 }
                 
             } else 
@@ -39,6 +42,9 @@ public class Tile2DFunctionality : MonoBehaviour
 
                     gameObject.GetComponent<Button>().image.overrideSprite = isFloor;
                     //gameObject.GetComponent<Image>().color = Color.yellow;
+                } else
+                {
+                    GameUIFunctionality.showTileTip();
                 }
             }
          
