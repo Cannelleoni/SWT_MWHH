@@ -2393,7 +2393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 095238fcdc2baaa4ea12d40002c11806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myCam: {fileID: 771569803}
+  canvas: {fileID: 1621732113}
 --- !u!1 &785976428
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,54 +1,75 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 // Controller
 public class ScreenshotHandler : MonoBehaviour
 {
     // screen shot
-    [SerializeField] Camera myCam;
-
-    private static ScreenshotHandler instance;
-    private bool takeScreenshotOnNextFrame;
+    [SerializeField] GameObject canvas;
     string imgEnding = ".png";
+    Texture2D screenshotTexture { get; set; }
 
     private void Awake()
     {
-        instance = this;
+        screenshotTexture = new Texture2D(Screen.width, Screen.height, TextureFormat.ARGB32, false);
     }
 
-    private void OnPostRender()
+
+    IEnumerator updateScreenshotTexture()
     {
-        if(takeScreenshotOnNextFrame)
+        canvas.SetActive(false);
+        yield return new WaitForEndOfFrame();
+        RenderTexture transformedRenderTexture = null;
+        RenderTexture renderTexture = RenderTexture.GetTemporary(Screen.width, Screen.height, 24, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Default, 1);
+        try
         {
-            takeScreenshotOnNextFrame = false;
-            RenderTexture renderTexture = myCam.targetTexture;
+            print("happens");
+            ScreenCapture.CaptureScreenshotIntoRenderTexture(renderTexture);
+            transformedRenderTexture = RenderTexture.GetTemporary( screenshotTexture.width, screenshotTexture.height, 24, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Default, 1);
+            Graphics.Blit( renderTexture, transformedRenderTexture, new Vector2(1, -1), new Vector2(0, 1));
+            RenderTexture.active = transformedRenderTexture;
+            screenshotTexture.ReadPixels( new Rect(0, 0, screenshotTexture.width, screenshotTexture.height), 0, 0);
 
-            Texture2D renderRes = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.ARGB32, false);
-            Rect rect = new Rect(0, 0, renderTexture.width, renderTexture.height);
-            renderRes.ReadPixels(rect, 0, 0);
-
-            byte[] byteArray = renderRes.EncodeToPNG();
-            string imgName = System.DateTime.Now.ToFileTime().ToString();       //ToString();       //ToLongTimeString();   // ToLongDateString();
-            print(imgName);
-
-            System.IO.Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + "/HomeDesignerScreenCapture");
-
-            System.IO.File.WriteAllBytes(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + "/HomeDesignerScreenCapture/" + imgName + imgEnding, byteArray);
-
-            RenderTexture.ReleaseTemporary(renderTexture);
-            myCam.targetTexture = null;
         }
+        catch (Exception e)
+        {
+            Debug.Log(e);
+            yield break;
+        }
+        finally
+        {
+            print("finally");
+
+            RenderTexture.active = null;
+            RenderTexture.ReleaseTemporary(renderTexture);
+            if (transformedRenderTexture != null)
+            {
+                RenderTexture.ReleaseTemporary(transformedRenderTexture);
+            }
+        }
+
+        screenshotTexture.Apply();
+        turnTexture2DIntoPNG(screenshotTexture);
+        canvas.SetActive(true);
     }
 
-    private void takeScreenshot(int width, int height)
+    void turnTexture2DIntoPNG(Texture2D texture2D)
     {
-        myCam.targetTexture = RenderTexture.GetTemporary(width, height, 16);
-        takeScreenshotOnNextFrame = true;
+        byte[] byteArray = texture2D.EncodeToPNG();
+        string imgName = System.DateTime.Now.ToFileTime().ToString();
+        print(imgName);
+
+        System.IO.Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + "/HomeDesignerScreenCapture");
+        System.IO.File.WriteAllBytes(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + "/HomeDesignerScreenCapture/" + imgName + imgEnding, byteArray);
     }
 
     public void takeScreenshotFromBtn()
     {
-        instance.takeScreenshot(Screen.width, Screen.height);
+        print("button press");
+        StartCoroutine(updateScreenshotTexture());
+        //instance.takeScreenshot(Screen.width, Screen.height);
     }
 
 }
