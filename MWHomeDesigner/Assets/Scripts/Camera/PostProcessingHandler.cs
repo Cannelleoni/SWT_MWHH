@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
 
+// View
 public class PostProcessingHandler : MonoBehaviour
 {
     [SerializeField] PostProcessVolume pPVolume;

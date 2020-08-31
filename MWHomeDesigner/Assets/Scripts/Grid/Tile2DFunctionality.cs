@@ -25,7 +25,9 @@ public class Tile2DFunctionality : MonoBehaviour
                     GridManager.setTileCounter(GridManager.getTileCounter() - 1);
                     GridManager.getGridContainer()[name.x, name.y].setIsFloor(false);
 
-                    gameObject.GetComponent<Button>().image.overrideSprite = noFloor;
+                    // call method with argument gameObject
+                    // gameObject.GetComponent<Button>().image.overrideSprite = noFloor;
+                    ButtonSpriteSwap.buttonNotFilled(gameObject);
                 } else
                 {
                     GameUIFunctionality.showTileTip();
@@ -36,12 +38,11 @@ public class Tile2DFunctionality : MonoBehaviour
                 // check adjacent tiles
                 if (GridManager.checkAdjacentTiles(name.x, name.y) > 0) 
                 {
-                    // should probably use getter & setter
                     GridManager.setTileCounter(GridManager.getTileCounter() + 1);
                     GridManager.getGridContainer()[name.x, name.y].setIsFloor(true);
 
-                    gameObject.GetComponent<Button>().image.overrideSprite = isFloor;
-                    //gameObject.GetComponent<Image>().color = Color.yellow;
+                   // gameObject.GetComponent<Button>().image.overrideSprite = isFloor;
+                    ButtonSpriteSwap.buttonFilled(gameObject);
                 } else
                 {
                     GameUIFunctionality.showTileTip();
@@ -54,9 +55,8 @@ public class Tile2DFunctionality : MonoBehaviour
             GridManager.setTileCounter(1);
             GridManager.getGridContainer()[name.x, name.y].setIsFloor(true);
 
-            gameObject.GetComponent<Button>().image.overrideSprite = isFloor;
-            //gameObject.GetComponent<Image>().color = Color.yellow;
-
+            // gameObject.GetComponent<Button>().image.overrideSprite = isFloor;
+            ButtonSpriteSwap.buttonFilled(gameObject);
         }
          
          

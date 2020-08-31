@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+// Controller
+
 public class GameUIFunctionality : BaseFunctionality
 {
     [SerializeField] GameObject tileTip;
@@ -27,8 +29,6 @@ public class GameUIFunctionality : BaseFunctionality
 
         // generate 3d dgrid
         GridManager.createGrid3D();
-
-        // enable furniture picking
 
         // enable captureBtn
         captureBtn.interactable = true;
@@ -62,9 +62,4 @@ public class GameUIFunctionality : BaseFunctionality
     {
         GUIF.tileTip.SetActive(true);
     }
-
-    //public void switchScene(int levelNum)
-    //{
-    //    SceneManager.LoadScene(levelNum);
-    //}
 }

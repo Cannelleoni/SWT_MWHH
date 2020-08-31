@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Controller
 public class ScreenshotHandler : MonoBehaviour
 {
     // screen shot

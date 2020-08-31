@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+// Model
+
 public class GridManager : MonoBehaviour
 {
     static GridManager GM;
@@ -27,7 +29,6 @@ public class GridManager : MonoBehaviour
 
     void Start()
     {
-
         createCustomArray(gridContainerSize.x, gridContainerSize.y);
         generate2DView(0, 0);
         //createGrid3D();
@@ -135,8 +136,6 @@ public class GridManager : MonoBehaviour
                 }
             }
         }
-        // instantiate 3d tile grid prefabs 
-        // but only isFloor tiles?
     }
 
 
@@ -159,7 +158,6 @@ public class GridManager : MonoBehaviour
 
             }
         }
-        print(neighbours);
         return neighbours;
     }
 
@@ -181,7 +179,6 @@ public class GridManager : MonoBehaviour
                     if (getGridContainer()[i, j].getIsFloor())
                     {
                         pairs[index] = new Vector2Int(turnX, turnY);
-                        print("update direct " + index);
                         index++;
                         directNeighbour++;
                         
@@ -190,19 +187,12 @@ public class GridManager : MonoBehaviour
                 {
                     if (getGridContainer()[i, j].getIsFloor())
                     {
-                        //pairs[index] = new Vector2Int(turnX, turnY);
-                        //print("update diagonal " + index);
-                        //index++;
                         diagonalNeighbour++;
                     }
-                        
                 }
-                
             }
         }
-
-        print("neighbours: " + index);
-
+        
         List<int> countX = new List<int> { 2 };
         List<int> countY = new List<int> { 2 };
 
@@ -222,7 +212,6 @@ public class GridManager : MonoBehaviour
 
             for (int k = 0; k < index; k++)
             {
-                print(pairs[k].x + ":" + pairs[k].y);
 
                 countX.Add(pairs[k].x);
                 countY.Add(pairs[k].y);
@@ -230,8 +219,7 @@ public class GridManager : MonoBehaviour
 
             bool matchX = countX.All(x => x == countX[0]);
             bool matchY = countY.All(y => y == countY[0]);
-
-            print("match x: " + matchX + ", match y: " + matchY);
+            
 
             if (matchX || matchY)
             {
@@ -252,17 +240,14 @@ public class GridManager : MonoBehaviour
                             // use 1,1
                             if (xDim > 0 && yDim > 0)
                             {
-                                print("1 - 1 ");
                                 return !(getGridContainer()[xDim - 1, yDim - 1].getIsFloor());
                             }
-
                         }
                         else
                         {
                             // use 3,3
                             if (xDim < gridContainerSize.x - 1 && yDim < gridContainerSize.y - 1)
                             {
-                                print("3 - 3");
                                 return !(getGridContainer()[xDim + 1, yDim + 1].getIsFloor());
                             }
                         }
@@ -272,7 +257,6 @@ public class GridManager : MonoBehaviour
                         // use 3,1
                         if (xDim < gridContainerSize.x - 1 && yDim > 0)
                         {
-                            print("3 - 1");
                             return !(getGridContainer()[xDim + 1, yDim - 1].getIsFloor());
                         }
                     }
@@ -282,7 +266,6 @@ public class GridManager : MonoBehaviour
                     // use 1,3
                     if (xDim > 0 && yDim < gridContainerSize.y - 1)
                     {
-                        print("1 - 3");
                         return !(getGridContainer()[xDim - 1, yDim + 1].getIsFloor());
                     }
                 }
@@ -291,7 +274,6 @@ public class GridManager : MonoBehaviour
         {
             if(diagonalNeighbour == 4)
             {
-                print("im okay");
                 return false;
             }
         }
@@ -299,11 +281,6 @@ public class GridManager : MonoBehaviour
         {
             return true;
         }
-        
-
-        
-        
-
         return isConnecting;
     }
 }
