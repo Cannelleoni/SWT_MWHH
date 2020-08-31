@@ -28,7 +28,7 @@ public class GameUIFunctionality : BaseFunctionality
         Destroy(parent);
 
         // generate 3d dgrid
-        GridViewGenerator.createGrid3D(GridManager.gridContainerSize.x, GridManager.gridContainerSize.y, Resources.Load<GameObject>("tile3D"), Resources.Load<GameObject>("3DGridContainer"));
+        GridViewGenerator.createGrid3D(GridManager.gridContainerSize.x, GridManager.gridContainerSize.y);
 
         // enable captureBtn
         captureBtn.interactable = true;
