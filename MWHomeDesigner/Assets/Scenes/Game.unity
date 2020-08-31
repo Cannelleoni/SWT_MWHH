@@ -580,7 +580,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1354545166}
         m_MethodName: Play
         m_Mode: 1
         m_Arguments:
@@ -673,6 +673,7 @@ GameObject:
   - component: {fileID: 298065713}
   - component: {fileID: 298065712}
   - component: {fileID: 298065714}
+  - component: {fileID: 298065715}
   m_Layer: 5
   m_Name: Lamp
   m_TagString: Untagged
@@ -777,7 +778,30 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 298065712}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 298065715}
+        m_MethodName: selectFurniture
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &298065715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298065710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8c539115915e974e9deec0a13f25340, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &346401696
 GameObject:
   m_ObjectHideFlags: 0
@@ -1283,6 +1307,7 @@ GameObject:
   - component: {fileID: 633354507}
   - component: {fileID: 633354506}
   - component: {fileID: 633354508}
+  - component: {fileID: 633354509}
   m_Layer: 5
   m_Name: Chair
   m_TagString: Untagged
@@ -1387,7 +1412,30 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 633354506}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 633354509}
+        m_MethodName: selectFurniture
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &633354509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633354504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8c539115915e974e9deec0a13f25340, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &771569801
 GameObject:
   m_ObjectHideFlags: 0
@@ -1437,7 +1485,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 1
@@ -1472,6 +1520,36 @@ Transform:
   m_Father: {fileID: 880713935}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+--- !u!1 &776835286
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 776835287}
+  m_Layer: 0
+  m_Name: FurnitureLibrary
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &776835287
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776835286}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 544.52, y: 285.71356, z: 422.2906}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &786198746
 GameObject:
   m_ObjectHideFlags: 0
@@ -1597,6 +1675,7 @@ GameObject:
   - component: {fileID: 810801237}
   - component: {fileID: 810801236}
   - component: {fileID: 810801238}
+  - component: {fileID: 810801239}
   m_Layer: 5
   m_Name: Table
   m_TagString: Untagged
@@ -1701,7 +1780,30 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 810801236}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 810801239}
+        m_MethodName: selectFurniture
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &810801239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810801234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8c539115915e974e9deec0a13f25340, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &817695587
 GameObject:
   m_ObjectHideFlags: 0
@@ -1714,8 +1816,9 @@ GameObject:
   - component: {fileID: 817695590}
   - component: {fileID: 817695589}
   - component: {fileID: 817695591}
+  - component: {fileID: 817695592}
   m_Layer: 5
-  m_Name: Plant
+  m_Name: PlantTable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1818,7 +1921,30 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 817695589}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 817695592}
+        m_MethodName: selectFurniture
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &817695592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817695587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8c539115915e974e9deec0a13f25340, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &842633300
 GameObject:
   m_ObjectHideFlags: 0
@@ -2085,9 +2211,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationController: {fileID: 880713935}
   camera: {fileID: 771569803}
-  mouseSensitivity: 200
+  mouseSensitivity: 50
   mouseDirection: 1
-  scrollSensitivity: 2
+  scrollSensitivity: 0.5
   scrollDirection: 1
   buttonRotation: 0
   buttonZoom: 0
@@ -2188,7 +2314,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 466576233}
         m_MethodName: quitGame
         m_Mode: 1
         m_Arguments:
@@ -2199,7 +2325,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1354545166}
         m_MethodName: Play
         m_Mode: 1
         m_Arguments:
@@ -2293,6 +2419,7 @@ GameObject:
   - component: {fileID: 1004144649}
   - component: {fileID: 1004144648}
   - component: {fileID: 1004144650}
+  - component: {fileID: 1004144651}
   m_Layer: 5
   m_Name: Armchair
   m_TagString: Untagged
@@ -2397,7 +2524,30 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1004144648}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1004144651}
+        m_MethodName: selectFurniture
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1004144651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004144646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8c539115915e974e9deec0a13f25340, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1021450792
 GameObject:
   m_ObjectHideFlags: 0
@@ -2581,7 +2731,7 @@ Transform:
   m_GameObject: {fileID: 1094679264}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -2.25, y: 0, z: -2}
-  m_LocalScale: {x: 0.2775, y: 0.0625, z: 0.2775}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 56181395}
   m_RootOrder: 0
@@ -2598,6 +2748,7 @@ GameObject:
   - component: {fileID: 1105543901}
   - component: {fileID: 1105543900}
   - component: {fileID: 1105543902}
+  - component: {fileID: 1105543903}
   m_Layer: 5
   m_Name: Dresser
   m_TagString: Untagged
@@ -2702,7 +2853,30 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1105543900}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1105543903}
+        m_MethodName: selectFurniture
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1105543903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105543898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8c539115915e974e9deec0a13f25340, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1214738006
 GameObject:
   m_ObjectHideFlags: 0
@@ -2718,7 +2892,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1214738007
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3392,8 +3566,9 @@ GameObject:
   - component: {fileID: 1611597257}
   - component: {fileID: 1611597256}
   - component: {fileID: 1611597258}
+  - component: {fileID: 1611597259}
   m_Layer: 5
-  m_Name: Closet
+  m_Name: Wardrobe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3496,7 +3671,30 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1611597256}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1611597259}
+        m_MethodName: selectFurniture
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1611597259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611597254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8c539115915e974e9deec0a13f25340, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1684670148
 GameObject:
   m_ObjectHideFlags: 0
@@ -3943,6 +4141,39 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1214738006}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1877066167}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1354545166}
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1759597860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4348,6 +4579,8 @@ GameObject:
   - component: {fileID: 1846938081}
   - component: {fileID: 1846938080}
   - component: {fileID: 1846938082}
+  - component: {fileID: 1846938084}
+  - component: {fileID: 1846938083}
   m_Layer: 5
   m_Name: Bed
   m_TagString: Untagged
@@ -4452,7 +4685,42 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1846938080}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1846938083}
+        m_MethodName: selectFurniture
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1846938083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846938078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8c539115915e974e9deec0a13f25340, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1846938084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846938078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b70ded619e258a46a5ae569834eddd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1858180579
 GameObject:
   m_ObjectHideFlags: 0
@@ -5184,8 +5452,9 @@ GameObject:
   - component: {fileID: 1998139959}
   - component: {fileID: 1998139958}
   - component: {fileID: 1998139960}
+  - component: {fileID: 1998139961}
   m_Layer: 5
-  m_Name: Nightstand
+  m_Name: BedsideTable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5288,7 +5557,30 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1998139958}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1998139961}
+        m_MethodName: selectFurniture
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1998139961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1998139956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8c539115915e974e9deec0a13f25340, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2005764775
 GameObject:
   m_ObjectHideFlags: 0
@@ -5455,7 +5747,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1354545166}
         m_MethodName: Play
         m_Mode: 1
         m_Arguments:

@@ -38,9 +38,16 @@ public class CameraController : MonoBehaviour
             rotationController.Rotate(Vector3.up * Input.GetAxis("Mouse X") * mouseSensitivity * mouseDirection * Time.deltaTime);
         } else if(Input.GetKey(KeyCode.Mouse0) && buttonZoom)
         {
+            if (Input.GetAxis("Mouse X") < 0 && camera.orthographicSize < 1)
+            {
+                Debug.Log("Cant zoom in further");
+            }
+            else
+            {
                 camera.orthographicSize += Input.GetAxis("Mouse X") * mouseSensitivity * mouseDirection * Time.deltaTime;
-            
-           
+            }
+
+
         } else if(Input.GetKey(KeyCode.Mouse0) && buttonPan)
         {
             rotationController.Translate(Vector3.left * Input.GetAxis("Mouse X") * mouseSensitivity / 10 * mouseDirection * Time.deltaTime);
@@ -53,7 +60,15 @@ public class CameraController : MonoBehaviour
 
         //ZOOM
         // adjusting the field of view to the mouse scroll input (makes zoom effect)
-        camera.orthographicSize += Input.mouseScrollDelta.y * scrollSensitivity * scrollDirection;
+        if (Input.mouseScrollDelta.y < 0 && camera.orthographicSize < 1)
+        {
+            Debug.Log("Cant zoom in further");
+        }
+        else
+        {
+            camera.orthographicSize += Input.mouseScrollDelta.y * scrollSensitivity * scrollDirection;
+        }
+        
 
         //PANING
 
