@@ -66,7 +66,6 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-            Debug.Log(Input.mouseScrollDelta.y);
             camera.orthographicSize += Input.mouseScrollDelta.y * scrollSensitivity * scrollDirection;
         }
         
