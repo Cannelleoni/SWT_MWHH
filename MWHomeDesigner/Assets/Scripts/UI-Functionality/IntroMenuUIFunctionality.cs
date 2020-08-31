@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+//Controller
 
 public class IntroMenuUIFunctionality : BaseFunctionality
 {
@@ -7,12 +8,7 @@ public class IntroMenuUIFunctionality : BaseFunctionality
     [SerializeField] GameObject settingsUI;
     [SerializeField] GameObject menuButton;
     [SerializeField] GameObject menuCloseButton;
-    [SerializeField] AudioSource buttonClickSound;
 
-    public void playBtnClickSound()
-    {
-        buttonClickSound.Play();
-    }
 
     public void toggleMenu()
     {

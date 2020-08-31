@@ -1,11 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
 
+// View
 public class PostProcessingHandler : MonoBehaviour
 {
+    // replace dof with something else
+
     [SerializeField] PostProcessVolume pPVolume;
     private Bloom _bloom;
     private DepthOfField _dOF;

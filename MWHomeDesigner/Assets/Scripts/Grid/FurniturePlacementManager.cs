@@ -2,18 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Controller
+
 public class FurniturePlacementManager : MonoBehaviour
 {
     public static string activeFurniture;
 
     RaycastHit hit;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -22,17 +18,17 @@ public class FurniturePlacementManager : MonoBehaviour
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit, 100.0f))
-        {
-            if (hit.transform != null)
+            if (Physics.Raycast(ray, out hit, 100.0f))
             {
-                Debug.Log("tile hit" + hit.transform.position);
-                GameObject furniture = GameObject.Instantiate((GameObject)Resources.Load(activeFurniture), hit.transform.position + new Vector3(0,0.5f,0),Quaternion.identity, hit.transform);
+                if (hit.transform != null)
+                {
+                    Debug.Log("tile hit" + hit.transform.position);
+                    GameObject furniture = GameObject.Instantiate((GameObject)Resources.Load(activeFurniture), hit.transform.position + new Vector3(0,0.5f,0),Quaternion.identity, hit.transform);
               
-                Debug.Log("Bed spawned");
-                activeFurniture = "";
+                    Debug.Log("Bed spawned");
+                    activeFurniture = "";
+                }
             }
-        }
             
         }
     }
