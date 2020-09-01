@@ -15,6 +15,8 @@ public class FurniturePlacementManager : MonoBehaviour
 
     public GameObject furnitureMenu;
 
+    public FlexibleColorPicker colorPicker;
+
     RaycastHit hit;
 
     void Update()
@@ -87,5 +89,11 @@ public class FurniturePlacementManager : MonoBehaviour
     {
         Destroy(selectedFurniture);
         furnitureMenu.SetActive(false);
+    }
+
+    public void changeColor()
+    {
+        selectedFurniture.GetComponentInChildren<Renderer>().material.color = colorPicker.color;
+
     }
 }
