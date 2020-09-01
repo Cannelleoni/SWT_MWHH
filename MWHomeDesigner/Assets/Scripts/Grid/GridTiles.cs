@@ -1,4 +1,5 @@
-﻿
+﻿// Model 
+
 public class GridTiles
 {
     int posX = 0;

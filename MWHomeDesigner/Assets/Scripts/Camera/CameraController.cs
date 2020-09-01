@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+// View
 public class CameraController : MonoBehaviour
 {
     //pivot point which the camera will pivot around
@@ -23,12 +22,7 @@ public class CameraController : MonoBehaviour
     public bool buttonZoom = false;
     public bool buttonPan = false;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
 
-    // Update is called once per frame
     void Update()
     {
         //checking if any of the assistance buttons is pressed
