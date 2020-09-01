@@ -400,6 +400,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4757806202155077295}
   - component: {fileID: 333946414338745224}
+  - component: {fileID: 1235099230392686320}
   m_Layer: 0
   m_Name: PlantTable
   m_TagString: Furniture
@@ -439,3 +440,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.795046, y: 0.92806125, z: 0.7200598}
   m_Center: {x: 0.013225734, y: 0.46786368, z: -0.016537458}
+--- !u!114 &1235099230392686320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8384653917850205372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ee55bcadea4b0f42b95edf15db9d318, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

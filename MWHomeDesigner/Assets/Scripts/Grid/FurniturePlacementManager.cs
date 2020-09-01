@@ -44,7 +44,6 @@ public class FurniturePlacementManager : MonoBehaviour
                     {
                         Debug.Log("tile hit" + hit.transform.position);
                         GameObject furniture = GameObject.Instantiate((GameObject)Resources.Load(activeFurniture), hit.transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity, hit.transform);
-
                         activeFurniture = "";
                     }
                 }
@@ -77,15 +76,16 @@ public class FurniturePlacementManager : MonoBehaviour
 
     public void rotateLeft()
     {
-        selectedFurniture.transform.Rotate(new Vector3(0, 90, 0));
+        selectedFurniture.transform.Rotate(new Vector3(0, -90, 0));
     }
 
     public void rotateRight()
     {
-        selectedFurniture.transform.Rotate(new Vector3(0, -90, 0));
+        selectedFurniture.transform.Rotate(new Vector3(0, 90, 0));
     }
     public void deleteFurniture()
     {
         Destroy(selectedFurniture);
+        furnitureMenu.SetActive(false);
     }
 }
