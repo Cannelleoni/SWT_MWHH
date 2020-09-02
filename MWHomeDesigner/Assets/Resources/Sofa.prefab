@@ -9,9 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8403379621205906105}
+  - component: {fileID: 4861199662595550208}
+  - component: {fileID: -8660773393104078329}
   m_Layer: 0
-  m_Name: sofa
-  m_TagString: Untagged
+  m_Name: Sofa
+  m_TagString: Furniture
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,6 +34,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4861199662595550208
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4811415496726077610}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8432254, y: 0.66442513, z: 1.8265239}
+  m_Center: {x: 0.07838729, y: 0.24053514, z: -0.41326195}
+--- !u!114 &-8660773393104078329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4811415496726077610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ee55bcadea4b0f42b95edf15db9d318, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6014896547393635470
 GameObject:
   m_ObjectHideFlags: 0
