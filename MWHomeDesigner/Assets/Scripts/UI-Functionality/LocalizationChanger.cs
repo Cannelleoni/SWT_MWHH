@@ -5,10 +5,15 @@ using UnityEngine.UI;
 
 public class LocalizationChanger : MonoBehaviour
 {
-    static bool langEng = false;
+    static bool langEng = true;
 
-    [SerializeField] LocalizationDataType[] instances;
+    [Header("Texts")]
+    [SerializeField] List<LocalizationDataType> instances = new List<LocalizationDataType>();
+
+    [Header("Buttons")]
     [SerializeField] GameObject quitEng, quitGer;
+    [SerializeField] Button langEngBtn, langGerBtn;
+    [SerializeField] Sprite checkUnpressed, checkPressed;
 
     void Start()
     {
@@ -35,6 +40,8 @@ public class LocalizationChanger : MonoBehaviour
             }
             // swap sprite
             quitGer.SetActive(false);
+            langEngBtn.image.overrideSprite = checkPressed;
+            langGerBtn.image.overrideSprite = checkUnpressed;
             langEng = true;
         }
         else
@@ -45,6 +52,8 @@ public class LocalizationChanger : MonoBehaviour
             }
             // swap sprite
             quitGer.SetActive(true);
+            langEngBtn.image.overrideSprite = checkUnpressed;
+            langGerBtn.image.overrideSprite = checkPressed;
             langEng = false;
         }
     }

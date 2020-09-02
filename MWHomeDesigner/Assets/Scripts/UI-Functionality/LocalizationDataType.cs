@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class LocalizationDataType : MonoBehaviour
+[System.Serializable]
+public class LocalizationDataType
 {
     public string german;
     public string english;
