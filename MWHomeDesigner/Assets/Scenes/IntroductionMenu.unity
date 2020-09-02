@@ -1387,7 +1387,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9e1c2d9de15d9d478235433332c60c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instances: []
+  instances:
+  - german: englisch
+    english: english
+    label: {fileID: 1634961561}
+  - german: deutsch
+    english: german
+    label: {fileID: 135456574}
   quitEng: {fileID: 1934546160}
   quitGer: {fileID: 1055410376}
   langEngBtn: {fileID: 277063642}
