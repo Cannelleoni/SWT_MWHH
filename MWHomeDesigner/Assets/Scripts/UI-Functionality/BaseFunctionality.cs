@@ -16,4 +16,9 @@ public class BaseFunctionality : MonoBehaviour
     {
         SceneManager.LoadScene(levelToLoad);
     }
+
+    public void destroyBtn(GameObject go)
+    {
+        Destroy(go);
+    }
 }

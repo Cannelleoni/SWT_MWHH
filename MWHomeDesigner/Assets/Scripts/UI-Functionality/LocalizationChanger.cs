@@ -12,7 +12,7 @@ public class LocalizationChanger : MonoBehaviour
 
     void Start()
     {
-        changeL11(langEng);
+       // changeL11(langEng);
     }
 
     public void changeToEng()

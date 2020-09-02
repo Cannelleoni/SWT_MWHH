@@ -32,9 +32,7 @@ public class GameUIFunctionality : BaseFunctionality
 
         // enable captureBtn
         captureBtn.interactable = true;
-
-        // destroy itself
-        Destroy(finishBtn);
+        
     }
 
     public void toggleMenu()
