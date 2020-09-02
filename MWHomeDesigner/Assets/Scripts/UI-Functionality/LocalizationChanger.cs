@@ -5,14 +5,14 @@ using UnityEngine.UI;
 
 public class LocalizationChanger : MonoBehaviour
 {
-    static bool langEng = true;
+    static bool langEng = false;
 
     [SerializeField] LocalizationDataType[] instances;
     [SerializeField] GameObject quitEng, quitGer;
 
     void Start()
     {
-       // changeL11(langEng);
+       changeL11(langEng);
     }
 
     public void changeToEng()
