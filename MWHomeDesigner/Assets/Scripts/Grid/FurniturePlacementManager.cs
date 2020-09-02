@@ -8,10 +8,10 @@ public class FurniturePlacementManager : MonoBehaviour
 {
     public static string activeFurniture;
 
-    public GameObject selectedFurniture;
+    private GameObject selectedFurniture;
 
-    public Transform lastPreviewed;
-    public GameObject previewfurniture;
+    private Transform lastPreviewed;
+    private GameObject previewfurniture;
 
     public GameObject furnitureMenu;
 
