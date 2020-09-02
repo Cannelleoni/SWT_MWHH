@@ -87,9 +87,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2947751654272747229}
+  - component: {fileID: 3902503642607781671}
+  - component: {fileID: -9080630019187819903}
   m_Layer: 0
-  m_Name: bed
-  m_TagString: Untagged
+  m_Name: Bed
+  m_TagString: Furniture
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,6 +114,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3902503642607781671
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2212355220877980878}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.9525323, y: 0.71756744, z: 1}
+  m_Center: {x: 0.47626615, y: 0.273808, z: 0}
+--- !u!114 &-9080630019187819903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2212355220877980878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ee55bcadea4b0f42b95edf15db9d318, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2844446472003553404
 GameObject:
   m_ObjectHideFlags: 0

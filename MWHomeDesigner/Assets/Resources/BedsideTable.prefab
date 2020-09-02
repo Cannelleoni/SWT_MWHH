@@ -9,9 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3990746610278286401}
+  - component: {fileID: 2378841417772910480}
+  - component: {fileID: 627417128620584343}
   m_Layer: 0
-  m_Name: bedsideTable
-  m_TagString: Untagged
+  m_Name: BedsideTable
+  m_TagString: Furniture
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36,6 +38,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2378841417772910480
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88562625103640146}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6848525, y: 0.46956515, z: 0.69403726}
+  m_Center: {x: 0.010878921, y: 0.26521742, z: -0.04122749}
+--- !u!114 &627417128620584343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88562625103640146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ee55bcadea4b0f42b95edf15db9d318, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &501347653241534660
 GameObject:
   m_ObjectHideFlags: 0

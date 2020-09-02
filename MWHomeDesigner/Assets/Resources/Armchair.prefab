@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6808255016701839462}
   - component: {fileID: 5019948456412327429}
   - component: {fileID: 5587441857154049225}
+  - component: {fileID: 6783366471873453768}
   m_Layer: 0
   m_Name: Armchair_Cube.017_SofaMat
   m_TagString: Untagged
@@ -78,6 +79,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &6783366471873453768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3459299542503008546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ee55bcadea4b0f42b95edf15db9d318, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5649159057473916233
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,9 +178,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8069294811067546679}
+  - component: {fileID: 4249208845315676507}
+  - component: {fileID: 5056095349734240649}
   m_Layer: 0
-  m_Name: armchair
-  m_TagString: Untagged
+  m_Name: Armchair
+  m_TagString: Furniture
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -188,3 +203,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4249208845315676507
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6458369915442400804}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8036405, y: 0.89311504, z: 1}
+  m_Center: {x: 0.015786901, y: 0.36112118, z: 0}
+--- !u!114 &5056095349734240649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6458369915442400804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ee55bcadea4b0f42b95edf15db9d318, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

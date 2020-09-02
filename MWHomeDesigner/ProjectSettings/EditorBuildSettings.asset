@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Screenshot.unity
     guid: 271857725ca35454dadca9333e0a9991
+  - enabled: 1
+    path: Assets/Scenes/Premade1.unity
+    guid: 45b89b027ea299249a110c3693a93920
   m_configObjects: {}
