@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Premade1.unity
     guid: 45b89b027ea299249a110c3693a93920
+  - enabled: 1
+    path: Assets/Scenes/Premade2.unity
+    guid: 98bb18add1aa8a248a43666e97f36930
   m_configObjects: {}
