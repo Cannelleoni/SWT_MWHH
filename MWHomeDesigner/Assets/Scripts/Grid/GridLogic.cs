@@ -12,7 +12,7 @@ public class GridLogic : MonoBehaviour
         // split the name
         string[] nameParts = s.Split('_');
         // convert the name parts into integers
-        Vector2Int index = new Vector2Int(System.Int32.Parse(nameParts[1]), System.Int32.Parse(nameParts[2]));
+        Vector2Int index = new Vector2Int(System.Int32.Parse(nameParts[0]), System.Int32.Parse(nameParts[1]));
 
         return index;
     }
