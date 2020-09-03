@@ -3,22 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Controller
-
 public class BaseFunctionality : MonoBehaviour
 {
-    public void quitGame()
-    {
-        Application.Quit();
-    }
+    // the player can quit the build game
+    public void quitGame() { Application.Quit(); }
 
-    public void loadScene(int levelToLoad)
-    {
-        SceneManager.LoadScene(levelToLoad);
-    }
+    // the level specified by the build index gets loaded
+    public void loadScene(int levelToLoad) { SceneManager.LoadScene(levelToLoad); }
 
-    public void destroyBtn(GameObject go)
-    {
-        Destroy(go);
-    }
+    // the given GameObject gets destroyed by á button through an onclick event
+    public void destroyBtn(GameObject go) { Destroy(go);  }
 }

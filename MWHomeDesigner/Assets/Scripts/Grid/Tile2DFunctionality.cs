@@ -2,61 +2,62 @@
 
 public class Tile2DFunctionality : MonoBehaviour
 {
-    [SerializeField] Sprite isFloor, noFloor;
-
+    // happens when a 2D button tile is clicked on the floor layout mode
     public void onClick2DTile()
     {
-        // get name
-        // -> get index
+        // get name -> get index
         Vector2Int name = GridLogic.getGridIndexFromName(gameObject);
-
-        // get underlying grid structure
-
+        
+        // if a tile has already been placed
         if (GridManager.getTileCounter() > 0)
         {
-            if (GridManager.getGridContainer()[name.x, name.y].getIsFloor() /*&& GridManager.checkAdjacentTiles(name.x, name.y) < 4*/) 
+            // if the tile the player clicked on is already a afloor tile
+            if (GridManager.getGridContainer()[name.x, name.y].getIsFloor() ) 
             {
-                // if tile is a corner piece allowed to delete
+                // check whether the current tile is a vital piece
                 if(!GridLogic.checkIfConnectingPiece(name.x, name.y))
                 {
+                    // set the tile counter down
                     GridManager.setTileCounter(GridManager.getTileCounter() - 1);
+                    // mark the current tile as 'not floor'
                     GridManager.getGridContainer()[name.x, name.y].setIsFloor(false);
-
-                    // call method with argument gameObject
-                    // gameObject.GetComponent<Button>().image.overrideSprite = noFloor;
+                    // change appearance of sprite
                     ButtonSpriteSwap.buttonNotFilled(gameObject);
                 } else
                 {
-                    GameUIFunctionality.showTileTip();
-                }
-                
-            } else 
-            {
-                // check adjacent tiles
-                if (GridLogic.checkAdjacentTiles(name.x, name.y) > 0) 
-                {
-                    GridManager.setTileCounter(GridManager.getTileCounter() + 1);
-                    GridManager.getGridContainer()[name.x, name.y].setIsFloor(true);
-
-                   // gameObject.GetComponent<Button>().image.overrideSprite = isFloor;
-                    ButtonSpriteSwap.buttonFilled(gameObject);
-                } else
-                {
+                    // show tip that all tiles should be connected
                     GameUIFunctionality.showTileTip();
                 }
             }
-         
-        } else 
-        {
-            // just place it
-            GridManager.setTileCounter(1);
-            GridManager.getGridContainer()[name.x, name.y].setIsFloor(true);
+            // make new floor tile
+            else 
+            {
+                // check adjacent tiles for a direct neighbour
+                if (GridLogic.checkAdjacentTiles(name.x, name.y) > 0) 
+                {
+                    // if there's a neighbour the tile is connected and may be placed down
+                    GridManager.setTileCounter(GridManager.getTileCounter() + 1);
+                    // communicate the change to the grid structure
+                    GridManager.getGridContainer()[name.x, name.y].setIsFloor(true);
 
-            // gameObject.GetComponent<Button>().image.overrideSprite = isFloor;
-            ButtonSpriteSwap.buttonFilled(gameObject);
+                   // change the appearance of the button
+                    ButtonSpriteSwap.buttonFilled(gameObject);
+                } else
+                {
+                    // show tip that the tiles should be connected
+                    GameUIFunctionality.showTileTip();
+                }
+            }
         }
-         
-         
-         
+        // no tile has been placed yet
+        else 
+        {
+            // just place it since there's no need to check for neighbours
+            GridManager.setTileCounter(1);
+            // communicate the change to the grid structure
+            GridManager.getGridContainer()[name.x, name.y].setIsFloor(true);
+            // change the apperance of the button
+            ButtonSpriteSwap.buttonFilled(gameObject);
+        }  
     }
 }

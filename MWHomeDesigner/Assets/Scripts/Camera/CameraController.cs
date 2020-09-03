@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 
-// View
 public class CameraController : MonoBehaviour
 {
     //pivot point which the camera will pivot around
     [SerializeField] Transform rotationController;
 
+    // the camera in the scene
     [SerializeField] Camera camera;
 
     //the strength the mouse input will influence the camera rotation
@@ -25,30 +25,39 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        //checking if any of the assistance buttons is pressed
+        //checking if any of the assistance buttons are pressed
+        // is the rotation button pressed
         if (Input.GetKey(KeyCode.Mouse0) && buttonRotation)
         {
             //rotation the pivot point which the camera is parented to around the y-axis
             rotationController.Rotate(Vector3.up * Input.GetAxis("Mouse X") * mouseSensitivity * mouseDirection * Time.deltaTime);
-        } else if(Input.GetKey(KeyCode.Mouse0) && buttonZoom)
+        }
+        // is the zoom button pressed
+        else if(Input.GetKey(KeyCode.Mouse0) && buttonZoom)
         {
+            // if the mouse input exceeds the orthographic size of the camera
             if (Input.GetAxis("Mouse X") < 0 && camera.orthographicSize < 1)
             {
                 Debug.Log("Cant zoom in further");
             }
             else
             {
+                // zoom either in or out
                 camera.orthographicSize += Input.GetAxis("Mouse X") * mouseSensitivity * mouseDirection * Time.deltaTime;
             }
-
-
-        } else if(Input.GetKey(KeyCode.Mouse0) && buttonPan)
+        }
+        // is the pan button pressed
+        else if(Input.GetKey(KeyCode.Mouse0) && buttonPan)
         {
+            // the camera gets moved along the x & y axis according to the mouse input
             rotationController.Translate(Vector3.left * Input.GetAxis("Mouse X") * mouseSensitivity / 10 * mouseDirection * Time.deltaTime);
             rotationController.Translate(Vector3.up * Input.GetAxis("Mouse Y") * mouseSensitivity / 10 * -mouseDirection * Time.deltaTime);
 
-        } else if(Input.GetKey(KeyCode.Mouse0))
+        }
+        // is not button pressed
+        else if(Input.GetKey(KeyCode.Mouse0))
         {
+            // if no button is true the default fo the left mouse button is rotation
             rotationController.Rotate(Vector3.up * Input.GetAxis("Mouse X") *mouseDirection * mouseSensitivity * Time.deltaTime);
         }
 
@@ -62,11 +71,12 @@ public class CameraController : MonoBehaviour
         {
             camera.orthographicSize += Input.mouseScrollDelta.y * scrollSensitivity * scrollDirection;
         }
-        
+
 
         //PANING
-
-        if(Input.GetKey(KeyCode.Mouse1))
+        // KeyCode.Mouse1 == right mouse button
+        // the camera gets moved along the x & y axis according to the mouse input
+        if (Input.GetKey(KeyCode.Mouse1))
         {
             rotationController.Translate(Vector3.left * Input.GetAxis("Mouse X") * mouseSensitivity/10 * mouseDirection * Time.deltaTime);
             rotationController.Translate(Vector3.up * Input.GetAxis("Mouse Y") * mouseSensitivity / 10 * -mouseDirection * Time.deltaTime);
@@ -74,19 +84,21 @@ public class CameraController : MonoBehaviour
 
     }
 
-    //Setter for button controls
+    //set the button mode to rotation
     public void setButtonRotation()
     {
         buttonPan = false;
         buttonRotation = true;
         buttonZoom = false;
     }
+    // set the button mode to zoom 
     public void setButtonZoom()
     {
         buttonPan = false;
         buttonRotation = false;
         buttonZoom = true;
     }
+    // set the button mode to pan
     public void setButtonPan()
     {
         buttonPan = true;
@@ -94,9 +106,6 @@ public class CameraController : MonoBehaviour
         buttonZoom = false;
     }
 
-    //other setters
-    public void setScrollDirection(int value)
-    {
-        scrollDirection = value;
-    }
+    // set the scroll direction
+    public void setScrollDirection(int value) { scrollDirection = value; }
 }

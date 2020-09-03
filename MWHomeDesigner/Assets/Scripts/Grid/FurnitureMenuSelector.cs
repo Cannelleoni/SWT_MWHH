@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// View
 public class FurnitureMenuSelector : MonoBehaviour
 {
-
+    // communicates which furniture icon has been selected
     public void selectFurniture()
     {
         FurniturePlacementManager.setActiveFurniture(gameObject.name);
-        Debug.Log("Set" + gameObject.name);
     }
 }

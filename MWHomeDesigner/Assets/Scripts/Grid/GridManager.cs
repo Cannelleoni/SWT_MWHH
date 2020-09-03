@@ -1,79 +1,60 @@
 ﻿using UnityEngine;
 
-// Model
-
 public class GridManager : MonoBehaviour
 {
+    // the singleton of this class
     static GridManager GM;
-
-    // needs getter & setter
-    public static bool isDecidingFloorLayout = true;
-    // replace with counter
-    public static int tileCounter = 0;
+    
+    // how many tiles have been placed
+    static int tileCounter = 0;
 
     // uniform, because the underlying grid is a rectangle
     static GridTiles[,] gridContainer;
-    // default max size
+    // default maximum size of the grid
     public static Vector2Int gridContainerSize { get; } = new Vector2Int(16, 16);
 
-    
 
     private void Awake()
     {
+        // the singleton gets set to an instance of this class
         GM = this;
     }
 
     void Start()
     {
+        // the grid gets initialized and filled with default values
         createCustomArray(gridContainerSize.x, gridContainerSize.y);
+        // the 2D button grid is made
         GridViewGenerator.generate2DView(gridContainerSize.x, gridContainerSize.y);
-        //createGrid3D();
+
 
     }
 
-    public static void setTileCounter(int i)
-    {
-        tileCounter = i;
-    }
+    // the setter for tileCounter
+    public static void setTileCounter(int i) { tileCounter = i; }
 
-    public static int getTileCounter()
-    {
-        return tileCounter;
-    }
+    // the getter for tileCounter
+    public static int getTileCounter() { return tileCounter; }
 
-    public static GridTiles[,] getGridContainer()
-    {
-        return gridContainer;
-    }
-
-    // first preset room & floor layout
-    void createPresetArray01(int xDim, int yDim)
-    {
-
-    }
-
-    // second preset room & floor layout
-    void createPresetArray02(int xDim, int yDim)
-    {
-
-    }
+    // the getter for gridContainer
+    public static GridTiles[,] getGridContainer() { return gridContainer; }
+    
 
     // gets called when game scene is entered for custom floor setup
     // when called use gridContainerSize
     void createCustomArray(int xDim, int yDim)
     {
+        // array gets initialized
         gridContainer = new GridTiles[xDim, yDim];
 
         for(int g = 0; g < xDim; g++)
         {
             for(int h = 0; h < yDim; h++)
             {
+                // all elements become an instance of GridTiles
                 getGridContainer()[g, h] = new GridTiles();
             }
         }
         
     }
-    
-   
-    
 }
